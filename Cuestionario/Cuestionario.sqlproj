@@ -58,4 +58,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Ins_Preguntas.sql" />
+    <Build Include="Ins_Respuestas.sql" />
+    <Build Include="Ins_Respuestas_Huesped.sql" />
+    <Build Include="Ins_TiposCuestionario.sql" />
+    <Build Include="Ins_TiposPregunta.sql" />
+    <Build Include="Upd_Preguntas.sql" />
+    <Build Include="Upd_Respuestas.sql" />
+  </ItemGroup>
 </Project>
