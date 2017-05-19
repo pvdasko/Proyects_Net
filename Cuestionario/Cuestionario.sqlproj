@@ -66,5 +66,6 @@
     <Build Include="Ins_TiposPregunta.sql" />
     <Build Include="Upd_Preguntas.sql" />
     <Build Include="Upd_Respuestas.sql" />
+    <Build Include="Upd_TiposCuestionarios.sql" />
   </ItemGroup>
 </Project>
