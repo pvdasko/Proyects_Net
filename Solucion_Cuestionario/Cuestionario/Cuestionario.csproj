@@ -345,6 +345,10 @@
       <Project>{e9623daa-bf56-4145-8254-b75b1a9ba62e}</Project>
       <Name>Cuestionario.BusinessRuleComponent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuestionario.DataAccesComponent\Cuestionario.DataAccesComponent.csproj">
+      <Project>{e5b3a94a-bc09-403e-81ac-80389cb5293c}</Project>
+      <Name>Cuestionario.DataAccesComponent</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
