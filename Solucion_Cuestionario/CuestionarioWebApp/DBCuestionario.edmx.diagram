@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2822981b46104076909c3d1d53dae70c" Name="Diagram1">
+        <EntityTypeShape EntityType="CuestionarioModelContext.C_Preguntas_Cuestionario" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.C_Respuestas_Cuestionario" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.C_Tipos_Cuestionario" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.C_Tipos_Pregunta_Cuestionario" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.O_Estancias" Width="1.5" PointX="7.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.O_Huespedes" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.O_Respuestas_Cuestionario_Huespedes" Width="1.5" PointX="15" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.S_Configuracion_Cuestionario" Width="1.5" PointX="10.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.S_Corporativos" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.S_Correos_Cuestionario" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.S_Hoteles" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Preguntas_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Respuestas_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Tipos_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_S_Correos_Cuestionario_C_Tipos_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Estancias_O_Huespedes" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Estancias_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Huespedes_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_S_Configuracion_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_S_Hoteles_S_Corporativos" ManuallyRouted="false" />
+        <AssociationConnector Association="CuestionarioModelContext.FK_S_Correos_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

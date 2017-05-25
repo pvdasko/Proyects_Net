@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuestionario.DataAccesCompo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuestionario.BusinessRuleComponent", "Cuestionario.BusinessRuleComponent\Cuestionario.BusinessRuleComponent.csproj", "{E9623DAA-BF56-4145-8254-B75B1A9BA62E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuestionario", "Cuestionario\Cuestionario.csproj", "{AAAC6F55-E0EB-4929-9F12-9094A8CF9F47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuestionarioWebApp", "CuestionarioWebApp\CuestionarioWebApp.csproj", "{D441D136-AB81-4FFA-9003-D5873EFC67C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{E9623DAA-BF56-4145-8254-B75B1A9BA62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9623DAA-BF56-4145-8254-B75B1A9BA62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9623DAA-BF56-4145-8254-B75B1A9BA62E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAAC6F55-E0EB-4929-9F12-9094A8CF9F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAAC6F55-E0EB-4929-9F12-9094A8CF9F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAAC6F55-E0EB-4929-9F12-9094A8CF9F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAAC6F55-E0EB-4929-9F12-9094A8CF9F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D441D136-AB81-4FFA-9003-D5873EFC67C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D441D136-AB81-4FFA-9003-D5873EFC67C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D441D136-AB81-4FFA-9003-D5873EFC67C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D441D136-AB81-4FFA-9003-D5873EFC67C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

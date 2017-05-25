@@ -1,0 +1,1373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CuestionarioModelContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="C_Preguntas Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+            <PropertyRef Name="No Pregunta" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="No Pregunta" Type="int" Nullable="false" />
+          <Property Name="Tipo Pregunta" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Pregunta" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Pregunta Ingles" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Calificacion Maxima" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_Respuestas Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+            <PropertyRef Name="No Pregunta" />
+            <PropertyRef Name="No Respuesta" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="No Pregunta" Type="int" Nullable="false" />
+          <Property Name="No Respuesta" Type="int" Nullable="false" />
+          <Property Name="Respuesta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Respuesta Ingles" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Respuesta Abierta" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_Tipos Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion Ingles" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_Tipos Pregunta Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Pregunta" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Pregunta" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion Ingles" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O_Estancias">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Linea" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Linea" Type="bigint" Nullable="false" />
+          <Property Name="Habitacion" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cuartos" Type="int" Nullable="false" />
+          <Property Name="Llegada" Type="date" />
+          <Property Name="Noches" Type="bigint" Nullable="false" />
+          <Property Name="Salida" Type="date" />
+          <Property Name="Adultos" Type="int" Nullable="false" />
+          <Property Name="Ninos" Type="int" Nullable="false" />
+          <Property Name="Juniors" Type="int" Nullable="false" />
+          <Property Name="Llegada Original" Type="date" />
+          <Property Name="Salida Original" Type="date" />
+          <Property Name="Hora Entrada" Type="time" Precision="0" />
+          <Property Name="Hora Salida" Type="time" Precision="0" />
+          <Property Name="Up/Down Grade" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Codigo Tarifa" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tarifa" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Divisa" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Tipo Tarifa" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O_Huespedes">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Perfil Id" Type="bigint" Nullable="false" />
+          <Property Name="Tipo Reservacion" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Apellido 2" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Nombre 2" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Idioma" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Contacto" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="S Mercado" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="S Venta" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Origen" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Medio" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Grupo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Agencia" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cupon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Empresa" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Vip" Type="int" Nullable="false" />
+          <Property Name="Fecha Rva" Type="date" />
+          <Property Name="Usuario Captura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha Captura" Type="date" />
+          <Property Name="Usuario Cancela" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha Cancela" Type="date" />
+          <Property Name="Id Maestro" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Forma de Pago" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Numero Tarjeta" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Nombre Tarjeta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Expira Tarjeta" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Detalle Tarjeta" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O_Respuestas Cuestionario Huespedes">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+            <PropertyRef Name="No Pregunta" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="No Respuesta" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="No Pregunta" Type="int" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="No Respuesta" Type="int" Nullable="false" />
+          <Property Name="Calificacion" Type="int" Nullable="false" />
+          <Property Name="Texto" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Configuracion Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Email Saliente" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Servidor SMTP" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="Usuario SMTP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasena SMTP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Puerto SMTP" Type="bigint" Nullable="false" />
+          <Property Name="Texto Superior" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Texto Superior Ingles" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Corporativos">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Nombre Corporativo" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Correos Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo Cuestionario" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo Cuestionario" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Hoteles">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+          </Key>
+          <Property Name="Corporativo" Type="bigint" Nullable="false" />
+          <Property Name="Hotel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre Hotel" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Licencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_C_Preguntas Cuestionario_C_Tipos Cuestionario">
+          <End Role="C_Tipos Cuestionario" Type="Self.C_Tipos Cuestionario" Multiplicity="1" />
+          <End Role="C_Preguntas Cuestionario" Type="Self.C_Preguntas Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Principal>
+            <Dependent Role="C_Preguntas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Preguntas Cuestionario_C_Tipos Pregunta Cuestionario">
+          <End Role="C_Tipos Pregunta Cuestionario" Type="Self.C_Tipos Pregunta Cuestionario" Multiplicity="1" />
+          <End Role="C_Preguntas Cuestionario" Type="Self.C_Preguntas Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos Pregunta Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Pregunta" />
+            </Principal>
+            <Dependent Role="C_Preguntas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Preguntas Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Preguntas Cuestionario" Type="Self.C_Preguntas Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Preguntas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Respuestas Cuestionario_C_Preguntas Cuestionario">
+          <End Role="C_Preguntas Cuestionario" Type="Self.C_Preguntas Cuestionario" Multiplicity="1" />
+          <End Role="C_Respuestas Cuestionario" Type="Self.C_Respuestas Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Preguntas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+              <PropertyRef Name="No Pregunta" />
+            </Principal>
+            <Dependent Role="C_Respuestas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+              <PropertyRef Name="No Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Respuestas Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Respuestas Cuestionario" Type="Self.C_Respuestas Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Respuestas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Tipos Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Tipos Cuestionario" Type="Self.C_Tipos Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Tipos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Tipos Pregunta Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Tipos Pregunta Cuestionario" Type="Self.C_Tipos Pregunta Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Tipos Pregunta Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Estancias_O_Huespedes">
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="1" />
+          <End Role="O_Estancias" Type="Self.O_Estancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="O_Estancias">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Estancias_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Estancias" Type="Self.O_Estancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Estancias">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Huespedes_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas Cuestionario Huespedes_C_Respuestas Cuestionario">
+          <End Role="C_Respuestas Cuestionario" Type="Self.C_Respuestas Cuestionario" Multiplicity="1" />
+          <End Role="O_Respuestas Cuestionario Huespedes" Type="Self.O_Respuestas Cuestionario Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Respuestas Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+              <PropertyRef Name="No Pregunta" />
+              <PropertyRef Name="No Respuesta" />
+            </Principal>
+            <Dependent Role="O_Respuestas Cuestionario Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+              <PropertyRef Name="No Pregunta" />
+              <PropertyRef Name="No Respuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas Cuestionario Huespedes_O_Huespedes">
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="1" />
+          <End Role="O_Respuestas Cuestionario Huespedes" Type="Self.O_Respuestas Cuestionario Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="O_Respuestas Cuestionario Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas Cuestionario Huespedes_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Respuestas Cuestionario Huespedes" Type="Self.O_Respuestas Cuestionario Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Respuestas Cuestionario Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Configuracion Cuestionario_C_Tipos Cuestionario">
+          <End Role="C_Tipos Cuestionario" Type="Self.C_Tipos Cuestionario" Multiplicity="1" />
+          <End Role="S_Configuracion Cuestionario" Type="Self.S_Configuracion Cuestionario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Principal>
+            <Dependent Role="S_Configuracion Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Configuracion Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="S_Configuracion Cuestionario" Type="Self.S_Configuracion Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="S_Configuracion Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Correos Cuestionario_C_Tipos Cuestionario">
+          <End Role="C_Tipos Cuestionario" Type="Self.C_Tipos Cuestionario" Multiplicity="1" />
+          <End Role="S_Correos Cuestionario" Type="Self.S_Correos Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Principal>
+            <Dependent Role="S_Correos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Correos Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="S_Correos Cuestionario" Type="Self.S_Correos Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="S_Correos Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Hoteles_S_Corporativos">
+          <End Role="S_Corporativos" Type="Self.S_Corporativos" Multiplicity="1" />
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Corporativos">
+              <PropertyRef Name="Corporativo" />
+            </Principal>
+            <Dependent Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CuestionarioModelContextStoreContainer">
+          <EntitySet Name="C_Preguntas Cuestionario" EntityType="Self.C_Preguntas Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Respuestas Cuestionario" EntityType="Self.C_Respuestas Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Tipos Cuestionario" EntityType="Self.C_Tipos Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Tipos Pregunta Cuestionario" EntityType="Self.C_Tipos Pregunta Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_Estancias" EntityType="Self.O_Estancias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_Huespedes" EntityType="Self.O_Huespedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O_Respuestas Cuestionario Huespedes" EntityType="Self.O_Respuestas Cuestionario Huespedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Configuracion Cuestionario" EntityType="Self.S_Configuracion Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Corporativos" EntityType="Self.S_Corporativos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Correos Cuestionario" EntityType="Self.S_Correos Cuestionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Hoteles" EntityType="Self.S_Hoteles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_C_Preguntas Cuestionario_C_Tipos Cuestionario" Association="Self.FK_C_Preguntas Cuestionario_C_Tipos Cuestionario">
+            <End Role="C_Tipos Cuestionario" EntitySet="C_Tipos Cuestionario" />
+            <End Role="C_Preguntas Cuestionario" EntitySet="C_Preguntas Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Preguntas Cuestionario_C_Tipos Pregunta Cuestionario" Association="Self.FK_C_Preguntas Cuestionario_C_Tipos Pregunta Cuestionario">
+            <End Role="C_Tipos Pregunta Cuestionario" EntitySet="C_Tipos Pregunta Cuestionario" />
+            <End Role="C_Preguntas Cuestionario" EntitySet="C_Preguntas Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Preguntas Cuestionario_S_Hoteles" Association="Self.FK_C_Preguntas Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Preguntas Cuestionario" EntitySet="C_Preguntas Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Respuestas Cuestionario_C_Preguntas Cuestionario" Association="Self.FK_C_Respuestas Cuestionario_C_Preguntas Cuestionario">
+            <End Role="C_Preguntas Cuestionario" EntitySet="C_Preguntas Cuestionario" />
+            <End Role="C_Respuestas Cuestionario" EntitySet="C_Respuestas Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Respuestas Cuestionario_S_Hoteles" Association="Self.FK_C_Respuestas Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Respuestas Cuestionario" EntitySet="C_Respuestas Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Tipos Cuestionario_S_Hoteles" Association="Self.FK_C_Tipos Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Tipos Cuestionario" EntitySet="C_Tipos Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Tipos Pregunta Cuestionario_S_Hoteles" Association="Self.FK_C_Tipos Pregunta Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Tipos Pregunta Cuestionario" EntitySet="C_Tipos Pregunta Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Estancias_O_Huespedes" Association="Self.FK_O_Estancias_O_Huespedes">
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+            <End Role="O_Estancias" EntitySet="O_Estancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Estancias_S_Hoteles" Association="Self.FK_O_Estancias_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Estancias" EntitySet="O_Estancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Huespedes_S_Hoteles" Association="Self.FK_O_Huespedes_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas Cuestionario Huespedes_C_Respuestas Cuestionario" Association="Self.FK_O_Respuestas Cuestionario Huespedes_C_Respuestas Cuestionario">
+            <End Role="C_Respuestas Cuestionario" EntitySet="C_Respuestas Cuestionario" />
+            <End Role="O_Respuestas Cuestionario Huespedes" EntitySet="O_Respuestas Cuestionario Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas Cuestionario Huespedes_O_Huespedes" Association="Self.FK_O_Respuestas Cuestionario Huespedes_O_Huespedes">
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+            <End Role="O_Respuestas Cuestionario Huespedes" EntitySet="O_Respuestas Cuestionario Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas Cuestionario Huespedes_S_Hoteles" Association="Self.FK_O_Respuestas Cuestionario Huespedes_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Respuestas Cuestionario Huespedes" EntitySet="O_Respuestas Cuestionario Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Configuracion Cuestionario_C_Tipos Cuestionario" Association="Self.FK_S_Configuracion Cuestionario_C_Tipos Cuestionario">
+            <End Role="C_Tipos Cuestionario" EntitySet="C_Tipos Cuestionario" />
+            <End Role="S_Configuracion Cuestionario" EntitySet="S_Configuracion Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Configuracion Cuestionario_S_Hoteles" Association="Self.FK_S_Configuracion Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="S_Configuracion Cuestionario" EntitySet="S_Configuracion Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Correos Cuestionario_C_Tipos Cuestionario" Association="Self.FK_S_Correos Cuestionario_C_Tipos Cuestionario">
+            <End Role="C_Tipos Cuestionario" EntitySet="C_Tipos Cuestionario" />
+            <End Role="S_Correos Cuestionario" EntitySet="S_Correos Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Correos Cuestionario_S_Hoteles" Association="Self.FK_S_Correos Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="S_Correos Cuestionario" EntitySet="S_Correos Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Hoteles_S_Corporativos" Association="Self.FK_S_Hoteles_S_Corporativos">
+            <End Role="S_Corporativos" EntitySet="S_Corporativos" />
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CuestionarioModelContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_Preguntas_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+            <PropertyRef Name="No_Pregunta" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="No_Pregunta" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_Pregunta" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pregunta" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pregunta_Ingles" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Calificacion_Maxima" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="C_Tipos_Cuestionario" Relationship="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario" FromRole="C_Preguntas_Cuestionario" ToRole="C_Tipos_Cuestionario" />
+          <NavigationProperty Name="C_Tipos_Pregunta_Cuestionario" Relationship="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario" FromRole="C_Preguntas_Cuestionario" ToRole="C_Tipos_Pregunta_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_C_Preguntas_Cuestionario_S_Hoteles" FromRole="C_Preguntas_Cuestionario" ToRole="S_Hoteles" />
+          <NavigationProperty Name="C_Respuestas_Cuestionario" Relationship="Self.FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario" FromRole="C_Preguntas_Cuestionario" ToRole="C_Respuestas_Cuestionario" />
+        </EntityType>
+        <EntityType Name="C_Respuestas_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+            <PropertyRef Name="No_Pregunta" />
+            <PropertyRef Name="No_Respuesta" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="No_Pregunta" Type="Int32" Nullable="false" />
+          <Property Name="No_Respuesta" Type="Int32" Nullable="false" />
+          <Property Name="Respuesta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Respuesta_Ingles" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Respuesta_Abierta" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="C_Preguntas_Cuestionario" Relationship="Self.FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario" FromRole="C_Respuestas_Cuestionario" ToRole="C_Preguntas_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_C_Respuestas_Cuestionario_S_Hoteles" FromRole="C_Respuestas_Cuestionario" ToRole="S_Hoteles" />
+          <NavigationProperty Name="O_Respuestas_Cuestionario_Huespedes" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario" FromRole="C_Respuestas_Cuestionario" ToRole="O_Respuestas_Cuestionario_Huespedes" />
+        </EntityType>
+        <EntityType Name="C_Tipos_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion_Ingles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Preguntas_Cuestionario" Relationship="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario" FromRole="C_Tipos_Cuestionario" ToRole="C_Preguntas_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_C_Tipos_Cuestionario_S_Hoteles" FromRole="C_Tipos_Cuestionario" ToRole="S_Hoteles" />
+          <NavigationProperty Name="S_Configuracion_Cuestionario" Relationship="Self.FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario" FromRole="C_Tipos_Cuestionario" ToRole="S_Configuracion_Cuestionario" />
+          <NavigationProperty Name="S_Correos_Cuestionario" Relationship="Self.FK_S_Correos_Cuestionario_C_Tipos_Cuestionario" FromRole="C_Tipos_Cuestionario" ToRole="S_Correos_Cuestionario" />
+        </EntityType>
+        <EntityType Name="C_Tipos_Pregunta_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Pregunta" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Pregunta" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion_Ingles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Preguntas_Cuestionario" Relationship="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario" FromRole="C_Tipos_Pregunta_Cuestionario" ToRole="C_Preguntas_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles" FromRole="C_Tipos_Pregunta_Cuestionario" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="O_Estancias">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Linea" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Linea" Type="Int64" Nullable="false" />
+          <Property Name="Habitacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cuartos" Type="Int32" Nullable="false" />
+          <Property Name="Llegada" Type="DateTime" Precision="0" />
+          <Property Name="Noches" Type="Int64" Nullable="false" />
+          <Property Name="Salida" Type="DateTime" Precision="0" />
+          <Property Name="Adultos" Type="Int32" Nullable="false" />
+          <Property Name="Ninos" Type="Int32" Nullable="false" />
+          <Property Name="Juniors" Type="Int32" Nullable="false" />
+          <Property Name="Llegada_Original" Type="DateTime" Precision="0" />
+          <Property Name="Salida_Original" Type="DateTime" Precision="0" />
+          <Property Name="Hora_Entrada" Type="Time" Precision="0" />
+          <Property Name="Hora_Salida" Type="Time" Precision="0" />
+          <Property Name="Up_Down_Grade" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo_Tarifa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tarifa" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Divisa" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Tarifa" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="O_Huespedes" Relationship="Self.FK_O_Estancias_O_Huespedes" FromRole="O_Estancias" ToRole="O_Huespedes" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_O_Estancias_S_Hoteles" FromRole="O_Estancias" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="O_Huespedes">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Perfil_Id" Type="Int64" Nullable="false" />
+          <Property Name="Tipo_Reservacion" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido_2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre_2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Idioma" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_Mercado" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_Venta" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Origen" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Medio" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Grupo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Agencia" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cupon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Empresa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vip" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Rva" Type="DateTime" Precision="0" />
+          <Property Name="Usuario_Captura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha_Captura" Type="DateTime" Precision="0" />
+          <Property Name="Usuario_Cancela" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha_Cancela" Type="DateTime" Precision="0" />
+          <Property Name="Id_Maestro" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Forma_de_Pago" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Numero_Tarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre_Tarjeta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Expira_Tarjeta" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Detalle_Tarjeta" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="O_Estancias" Relationship="Self.FK_O_Estancias_O_Huespedes" FromRole="O_Huespedes" ToRole="O_Estancias" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_O_Huespedes_S_Hoteles" FromRole="O_Huespedes" ToRole="S_Hoteles" />
+          <NavigationProperty Name="O_Respuestas_Cuestionario_Huespedes" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes" FromRole="O_Huespedes" ToRole="O_Respuestas_Cuestionario_Huespedes" />
+        </EntityType>
+        <EntityType Name="O_Respuestas_Cuestionario_Huespedes">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+            <PropertyRef Name="No_Pregunta" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="No_Respuesta" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="No_Pregunta" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="No_Respuesta" Type="Int32" Nullable="false" />
+          <Property Name="Calificacion" Type="Int32" Nullable="false" />
+          <Property Name="Texto" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Respuestas_Cuestionario" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario" FromRole="O_Respuestas_Cuestionario_Huespedes" ToRole="C_Respuestas_Cuestionario" />
+          <NavigationProperty Name="O_Huespedes" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes" FromRole="O_Respuestas_Cuestionario_Huespedes" ToRole="O_Huespedes" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles" FromRole="O_Respuestas_Cuestionario_Huespedes" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="S_Configuracion_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email_Saliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Servidor_SMTP" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Usuario_SMTP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contrasena_SMTP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puerto_SMTP" Type="Int64" Nullable="false" />
+          <Property Name="Texto_Superior" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Texto_Superior_Ingles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Tipos_Cuestionario" Relationship="Self.FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario" FromRole="S_Configuracion_Cuestionario" ToRole="C_Tipos_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_S_Configuracion_Cuestionario_S_Hoteles" FromRole="S_Configuracion_Cuestionario" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="S_Corporativos">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Nombre_Corporativo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_S_Hoteles_S_Corporativos" FromRole="S_Corporativos" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="S_Correos_Cuestionario">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+            <PropertyRef Name="Tipo_Cuestionario" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo_Cuestionario" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Tipos_Cuestionario" Relationship="Self.FK_S_Correos_Cuestionario_C_Tipos_Cuestionario" FromRole="S_Correos_Cuestionario" ToRole="C_Tipos_Cuestionario" />
+          <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_S_Correos_Cuestionario_S_Hoteles" FromRole="S_Correos_Cuestionario" ToRole="S_Hoteles" />
+        </EntityType>
+        <EntityType Name="S_Hoteles">
+          <Key>
+            <PropertyRef Name="Corporativo" />
+            <PropertyRef Name="Hotel" />
+          </Key>
+          <Property Name="Corporativo" Type="Int64" Nullable="false" />
+          <Property Name="Hotel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre_Hotel" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RFC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Licencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Preguntas_Cuestionario" Relationship="Self.FK_C_Preguntas_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="C_Preguntas_Cuestionario" />
+          <NavigationProperty Name="C_Respuestas_Cuestionario" Relationship="Self.FK_C_Respuestas_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="C_Respuestas_Cuestionario" />
+          <NavigationProperty Name="C_Tipos_Cuestionario" Relationship="Self.FK_C_Tipos_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="C_Tipos_Cuestionario" />
+          <NavigationProperty Name="C_Tipos_Pregunta_Cuestionario" Relationship="Self.FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="C_Tipos_Pregunta_Cuestionario" />
+          <NavigationProperty Name="O_Estancias" Relationship="Self.FK_O_Estancias_S_Hoteles" FromRole="S_Hoteles" ToRole="O_Estancias" />
+          <NavigationProperty Name="O_Huespedes" Relationship="Self.FK_O_Huespedes_S_Hoteles" FromRole="S_Hoteles" ToRole="O_Huespedes" />
+          <NavigationProperty Name="O_Respuestas_Cuestionario_Huespedes" Relationship="Self.FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles" FromRole="S_Hoteles" ToRole="O_Respuestas_Cuestionario_Huespedes" />
+          <NavigationProperty Name="S_Configuracion_Cuestionario" Relationship="Self.FK_S_Configuracion_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="S_Configuracion_Cuestionario" />
+          <NavigationProperty Name="S_Corporativos" Relationship="Self.FK_S_Hoteles_S_Corporativos" FromRole="S_Hoteles" ToRole="S_Corporativos" />
+          <NavigationProperty Name="S_Correos_Cuestionario" Relationship="Self.FK_S_Correos_Cuestionario_S_Hoteles" FromRole="S_Hoteles" ToRole="S_Correos_Cuestionario" />
+        </EntityType>
+        <Association Name="FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario">
+          <End Role="C_Tipos_Cuestionario" Type="Self.C_Tipos_Cuestionario" Multiplicity="1" />
+          <End Role="C_Preguntas_Cuestionario" Type="Self.C_Preguntas_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Principal>
+            <Dependent Role="C_Preguntas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario">
+          <End Role="C_Tipos_Pregunta_Cuestionario" Type="Self.C_Tipos_Pregunta_Cuestionario" Multiplicity="1" />
+          <End Role="C_Preguntas_Cuestionario" Type="Self.C_Preguntas_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos_Pregunta_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Pregunta" />
+            </Principal>
+            <Dependent Role="C_Preguntas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Preguntas_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Preguntas_Cuestionario" Type="Self.C_Preguntas_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Preguntas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario">
+          <End Role="C_Preguntas_Cuestionario" Type="Self.C_Preguntas_Cuestionario" Multiplicity="1" />
+          <End Role="C_Respuestas_Cuestionario" Type="Self.C_Respuestas_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Preguntas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+              <PropertyRef Name="No_Pregunta" />
+            </Principal>
+            <Dependent Role="C_Respuestas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+              <PropertyRef Name="No_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Respuestas_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Respuestas_Cuestionario" Type="Self.C_Respuestas_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Respuestas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario">
+          <End Role="C_Respuestas_Cuestionario" Type="Self.C_Respuestas_Cuestionario" Multiplicity="1" />
+          <End Role="O_Respuestas_Cuestionario_Huespedes" Type="Self.O_Respuestas_Cuestionario_Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Respuestas_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+              <PropertyRef Name="No_Pregunta" />
+              <PropertyRef Name="No_Respuesta" />
+            </Principal>
+            <Dependent Role="O_Respuestas_Cuestionario_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+              <PropertyRef Name="No_Pregunta" />
+              <PropertyRef Name="No_Respuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Tipos_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Tipos_Cuestionario" Type="Self.C_Tipos_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Tipos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario">
+          <End Role="C_Tipos_Cuestionario" Type="Self.C_Tipos_Cuestionario" Multiplicity="1" />
+          <End Role="S_Configuracion_Cuestionario" Type="Self.S_Configuracion_Cuestionario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Principal>
+            <Dependent Role="S_Configuracion_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Correos_Cuestionario_C_Tipos_Cuestionario">
+          <End Role="C_Tipos_Cuestionario" Type="Self.C_Tipos_Cuestionario" Multiplicity="1" />
+          <End Role="S_Correos_Cuestionario" Type="Self.S_Correos_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Tipos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Principal>
+            <Dependent Role="S_Correos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Tipo_Cuestionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="C_Tipos_Pregunta_Cuestionario" Type="Self.C_Tipos_Pregunta_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="C_Tipos_Pregunta_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Estancias_O_Huespedes">
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="1" />
+          <End Role="O_Estancias" Type="Self.O_Estancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="O_Estancias">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Estancias_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Estancias" Type="Self.O_Estancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Estancias">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Huespedes_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes">
+          <End Role="O_Huespedes" Type="Self.O_Huespedes" Multiplicity="1" />
+          <End Role="O_Respuestas_Cuestionario_Huespedes" Type="Self.O_Respuestas_Cuestionario_Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="O_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="O_Respuestas_Cuestionario_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="O_Respuestas_Cuestionario_Huespedes" Type="Self.O_Respuestas_Cuestionario_Huespedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="O_Respuestas_Cuestionario_Huespedes">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Configuracion_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="S_Configuracion_Cuestionario" Type="Self.S_Configuracion_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="S_Configuracion_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Hoteles_S_Corporativos">
+          <End Role="S_Corporativos" Type="Self.S_Corporativos" Multiplicity="1" />
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Corporativos">
+              <PropertyRef Name="Corporativo" />
+            </Principal>
+            <Dependent Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_Correos_Cuestionario_S_Hoteles">
+          <End Role="S_Hoteles" Type="Self.S_Hoteles" Multiplicity="1" />
+          <End Role="S_Correos_Cuestionario" Type="Self.S_Correos_Cuestionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Hoteles">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Principal>
+            <Dependent Role="S_Correos_Cuestionario">
+              <PropertyRef Name="Corporativo" />
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CuestionarioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_Preguntas_Cuestionario" EntityType="Self.C_Preguntas_Cuestionario" />
+          <EntitySet Name="C_Respuestas_Cuestionario" EntityType="Self.C_Respuestas_Cuestionario" />
+          <EntitySet Name="C_Tipos_Cuestionario" EntityType="Self.C_Tipos_Cuestionario" />
+          <EntitySet Name="C_Tipos_Pregunta_Cuestionario" EntityType="Self.C_Tipos_Pregunta_Cuestionario" />
+          <EntitySet Name="O_Estancias" EntityType="Self.O_Estancias" />
+          <EntitySet Name="O_Huespedes" EntityType="Self.O_Huespedes" />
+          <EntitySet Name="O_Respuestas_Cuestionario_Huespedes" EntityType="Self.O_Respuestas_Cuestionario_Huespedes" />
+          <EntitySet Name="S_Configuracion_Cuestionario" EntityType="Self.S_Configuracion_Cuestionario" />
+          <EntitySet Name="S_Corporativos" EntityType="Self.S_Corporativos" />
+          <EntitySet Name="S_Correos_Cuestionario" EntityType="Self.S_Correos_Cuestionario" />
+          <EntitySet Name="S_Hoteles" EntityType="Self.S_Hoteles" />
+          <AssociationSet Name="FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario" Association="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Cuestionario">
+            <End Role="C_Tipos_Cuestionario" EntitySet="C_Tipos_Cuestionario" />
+            <End Role="C_Preguntas_Cuestionario" EntitySet="C_Preguntas_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario" Association="Self.FK_C_Preguntas_Cuestionario_C_Tipos_Pregunta_Cuestionario">
+            <End Role="C_Tipos_Pregunta_Cuestionario" EntitySet="C_Tipos_Pregunta_Cuestionario" />
+            <End Role="C_Preguntas_Cuestionario" EntitySet="C_Preguntas_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Preguntas_Cuestionario_S_Hoteles" Association="Self.FK_C_Preguntas_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Preguntas_Cuestionario" EntitySet="C_Preguntas_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario" Association="Self.FK_C_Respuestas_Cuestionario_C_Preguntas_Cuestionario">
+            <End Role="C_Preguntas_Cuestionario" EntitySet="C_Preguntas_Cuestionario" />
+            <End Role="C_Respuestas_Cuestionario" EntitySet="C_Respuestas_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Respuestas_Cuestionario_S_Hoteles" Association="Self.FK_C_Respuestas_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Respuestas_Cuestionario" EntitySet="C_Respuestas_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario" Association="Self.FK_O_Respuestas_Cuestionario_Huespedes_C_Respuestas_Cuestionario">
+            <End Role="C_Respuestas_Cuestionario" EntitySet="C_Respuestas_Cuestionario" />
+            <End Role="O_Respuestas_Cuestionario_Huespedes" EntitySet="O_Respuestas_Cuestionario_Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Tipos_Cuestionario_S_Hoteles" Association="Self.FK_C_Tipos_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Tipos_Cuestionario" EntitySet="C_Tipos_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario" Association="Self.FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario">
+            <End Role="C_Tipos_Cuestionario" EntitySet="C_Tipos_Cuestionario" />
+            <End Role="S_Configuracion_Cuestionario" EntitySet="S_Configuracion_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Correos_Cuestionario_C_Tipos_Cuestionario" Association="Self.FK_S_Correos_Cuestionario_C_Tipos_Cuestionario">
+            <End Role="C_Tipos_Cuestionario" EntitySet="C_Tipos_Cuestionario" />
+            <End Role="S_Correos_Cuestionario" EntitySet="S_Correos_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles" Association="Self.FK_C_Tipos_Pregunta_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="C_Tipos_Pregunta_Cuestionario" EntitySet="C_Tipos_Pregunta_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Estancias_O_Huespedes" Association="Self.FK_O_Estancias_O_Huespedes">
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+            <End Role="O_Estancias" EntitySet="O_Estancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Estancias_S_Hoteles" Association="Self.FK_O_Estancias_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Estancias" EntitySet="O_Estancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Huespedes_S_Hoteles" Association="Self.FK_O_Huespedes_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes" Association="Self.FK_O_Respuestas_Cuestionario_Huespedes_O_Huespedes">
+            <End Role="O_Huespedes" EntitySet="O_Huespedes" />
+            <End Role="O_Respuestas_Cuestionario_Huespedes" EntitySet="O_Respuestas_Cuestionario_Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles" Association="Self.FK_O_Respuestas_Cuestionario_Huespedes_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="O_Respuestas_Cuestionario_Huespedes" EntitySet="O_Respuestas_Cuestionario_Huespedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Configuracion_Cuestionario_S_Hoteles" Association="Self.FK_S_Configuracion_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="S_Configuracion_Cuestionario" EntitySet="S_Configuracion_Cuestionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Hoteles_S_Corporativos" Association="Self.FK_S_Hoteles_S_Corporativos">
+            <End Role="S_Corporativos" EntitySet="S_Corporativos" />
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_Correos_Cuestionario_S_Hoteles" Association="Self.FK_S_Correos_Cuestionario_S_Hoteles">
+            <End Role="S_Hoteles" EntitySet="S_Hoteles" />
+            <End Role="S_Correos_Cuestionario" EntitySet="S_Correos_Cuestionario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CuestionarioModelContextStoreContainer" CdmEntityContainer="CuestionarioEntities">
+          <EntitySetMapping Name="C_Preguntas_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.C_Preguntas_Cuestionario">
+              <MappingFragment StoreEntitySet="C_Preguntas Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="No_Pregunta" ColumnName="No Pregunta" />
+                <ScalarProperty Name="Tipo_Pregunta" ColumnName="Tipo Pregunta" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Pregunta_Ingles" ColumnName="Pregunta Ingles" />
+                <ScalarProperty Name="Calificacion_Maxima" ColumnName="Calificacion Maxima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Respuestas_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.C_Respuestas_Cuestionario">
+              <MappingFragment StoreEntitySet="C_Respuestas Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="No_Pregunta" ColumnName="No Pregunta" />
+                <ScalarProperty Name="No_Respuesta" ColumnName="No Respuesta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="Respuesta_Ingles" ColumnName="Respuesta Ingles" />
+                <ScalarProperty Name="Respuesta_Abierta" ColumnName="Respuesta Abierta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Tipos_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.C_Tipos_Cuestionario">
+              <MappingFragment StoreEntitySet="C_Tipos Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Descripcion_Ingles" ColumnName="Descripcion Ingles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Tipos_Pregunta_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.C_Tipos_Pregunta_Cuestionario">
+              <MappingFragment StoreEntitySet="C_Tipos Pregunta Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Pregunta" ColumnName="Tipo Pregunta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Descripcion_Ingles" ColumnName="Descripcion Ingles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_Estancias">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.O_Estancias">
+              <MappingFragment StoreEntitySet="O_Estancias">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Linea" ColumnName="Linea" />
+                <ScalarProperty Name="Habitacion" ColumnName="Habitacion" />
+                <ScalarProperty Name="Cuartos" ColumnName="Cuartos" />
+                <ScalarProperty Name="Llegada" ColumnName="Llegada" />
+                <ScalarProperty Name="Noches" ColumnName="Noches" />
+                <ScalarProperty Name="Salida" ColumnName="Salida" />
+                <ScalarProperty Name="Adultos" ColumnName="Adultos" />
+                <ScalarProperty Name="Ninos" ColumnName="Ninos" />
+                <ScalarProperty Name="Juniors" ColumnName="Juniors" />
+                <ScalarProperty Name="Llegada_Original" ColumnName="Llegada Original" />
+                <ScalarProperty Name="Salida_Original" ColumnName="Salida Original" />
+                <ScalarProperty Name="Hora_Entrada" ColumnName="Hora Entrada" />
+                <ScalarProperty Name="Hora_Salida" ColumnName="Hora Salida" />
+                <ScalarProperty Name="Up_Down_Grade" ColumnName="Up/Down Grade" />
+                <ScalarProperty Name="Codigo_Tarifa" ColumnName="Codigo Tarifa" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+                <ScalarProperty Name="Divisa" ColumnName="Divisa" />
+                <ScalarProperty Name="Tipo_Tarifa" ColumnName="Tipo Tarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_Huespedes">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.O_Huespedes">
+              <MappingFragment StoreEntitySet="O_Huespedes">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Perfil_Id" ColumnName="Perfil Id" />
+                <ScalarProperty Name="Tipo_Reservacion" ColumnName="Tipo Reservacion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Apellido_2" ColumnName="Apellido 2" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nombre_2" ColumnName="Nombre 2" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Idioma" ColumnName="Idioma" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="S_Mercado" ColumnName="S Mercado" />
+                <ScalarProperty Name="S_Venta" ColumnName="S Venta" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Medio" ColumnName="Medio" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Agencia" ColumnName="Agencia" />
+                <ScalarProperty Name="Cupon" ColumnName="Cupon" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Vip" ColumnName="Vip" />
+                <ScalarProperty Name="Fecha_Rva" ColumnName="Fecha Rva" />
+                <ScalarProperty Name="Usuario_Captura" ColumnName="Usuario Captura" />
+                <ScalarProperty Name="Fecha_Captura" ColumnName="Fecha Captura" />
+                <ScalarProperty Name="Usuario_Cancela" ColumnName="Usuario Cancela" />
+                <ScalarProperty Name="Fecha_Cancela" ColumnName="Fecha Cancela" />
+                <ScalarProperty Name="Id_Maestro" ColumnName="Id Maestro" />
+                <ScalarProperty Name="Forma_de_Pago" ColumnName="Forma de Pago" />
+                <ScalarProperty Name="Numero_Tarjeta" ColumnName="Numero Tarjeta" />
+                <ScalarProperty Name="Nombre_Tarjeta" ColumnName="Nombre Tarjeta" />
+                <ScalarProperty Name="Expira_Tarjeta" ColumnName="Expira Tarjeta" />
+                <ScalarProperty Name="Detalle_Tarjeta" ColumnName="Detalle Tarjeta" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="O_Respuestas_Cuestionario_Huespedes">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.O_Respuestas_Cuestionario_Huespedes">
+              <MappingFragment StoreEntitySet="O_Respuestas Cuestionario Huespedes">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="No_Pregunta" ColumnName="No Pregunta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="No_Respuesta" ColumnName="No Respuesta" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Configuracion_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.S_Configuracion_Cuestionario">
+              <MappingFragment StoreEntitySet="S_Configuracion Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="Email_Saliente" ColumnName="Email Saliente" />
+                <ScalarProperty Name="Servidor_SMTP" ColumnName="Servidor SMTP" />
+                <ScalarProperty Name="Usuario_SMTP" ColumnName="Usuario SMTP" />
+                <ScalarProperty Name="Contrasena_SMTP" ColumnName="Contrasena SMTP" />
+                <ScalarProperty Name="Puerto_SMTP" ColumnName="Puerto SMTP" />
+                <ScalarProperty Name="Texto_Superior" ColumnName="Texto Superior" />
+                <ScalarProperty Name="Texto_Superior_Ingles" ColumnName="Texto Superior Ingles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Corporativos">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.S_Corporativos">
+              <MappingFragment StoreEntitySet="S_Corporativos">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Nombre_Corporativo" ColumnName="Nombre Corporativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Correos_Cuestionario">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.S_Correos_Cuestionario">
+              <MappingFragment StoreEntitySet="S_Correos Cuestionario">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Hoteles">
+            <EntityTypeMapping TypeName="CuestionarioModelContext.S_Hoteles">
+              <MappingFragment StoreEntitySet="S_Hoteles">
+                <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Nombre_Hotel" ColumnName="Nombre Hotel" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Licencia" ColumnName="Licencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
