@@ -1,0 +1,579 @@
+USE [Bluekey_Cuestionario]
+GO
+/****** Object:  Table [dbo].[C_Preguntas Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[C_Preguntas Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Tipo Cuestionario]  DEFAULT (''),
+	[No Pregunta] [int] NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_No Pregunta]  DEFAULT ((1)),
+	[Tipo Pregunta] [nvarchar](5) NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Tipo Pregunta]  DEFAULT (''),
+	[Pregunta] [nvarchar](150) NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Pregunta]  DEFAULT (''),
+	[Pregunta Ingles] [nvarchar](150) NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Pregunta Ingles]  DEFAULT (''),
+	[Calificacion Maxima] [int] NOT NULL CONSTRAINT [DF_C_Preguntas Cuestionario_Calificacion Maxima]  DEFAULT ((5)),
+ CONSTRAINT [PK_C_Preguntas Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC,
+	[No Pregunta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[C_Respuestas Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[C_Respuestas Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Tipo Cuestionario]  DEFAULT (''),
+	[No Pregunta] [int] NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_No Pregunta]  DEFAULT ((1)),
+	[No Respuesta] [int] NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_No Respuesta]  DEFAULT ((1)),
+	[Respuesta] [nvarchar](100) NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Respuesta]  DEFAULT (''),
+	[Respuesta Ingles] [nvarchar](100) NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Respuesta Ingles]  DEFAULT (''),
+	[Respuesta Abierta] [bit] NOT NULL CONSTRAINT [DF_C_Respuestas Cuestionario_Respuesta Abierta]  DEFAULT ((0)),
+ CONSTRAINT [PK_C_Respuestas Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC,
+	[No Pregunta] ASC,
+	[No Respuesta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[C_Tipos Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[C_Tipos Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_C_Tipos Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_C_Tipos Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_C_Tipos Cuestionario_Tipo Cuestionario]  DEFAULT (''),
+	[Descripcion] [nvarchar](50) NOT NULL CONSTRAINT [DF_C_Tipos Cuestionario_Descripcion]  DEFAULT (''),
+	[Descripcion Ingles] [nvarchar](50) NOT NULL CONSTRAINT [DF_C_Tipos Cuestionario_Descripcion Ingles]  DEFAULT (''),
+ CONSTRAINT [PK_C_Tipos Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[C_Tipos Pregunta Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[C_Tipos Pregunta Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_C_Tipos Pregunta Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_C_Tipos Pregunta Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Pregunta] [nvarchar](5) NOT NULL CONSTRAINT [DF_C_Tipos Pregunta Cuestionario_Tipo Pregunta]  DEFAULT (''),
+	[Descripcion] [nvarchar](50) NOT NULL CONSTRAINT [DF_C_Tipos Pregunta Cuestionario_Descripcion]  DEFAULT (''),
+	[Descripcion Ingles] [nvarchar](50) NOT NULL CONSTRAINT [DF_C_Tipos Pregunta Cuestionario_Descripcion Ingles]  DEFAULT (''),
+ CONSTRAINT [PK_C_Tipos Pregunta Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Pregunta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[O_Estancias]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[O_Estancias](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_O_Estancias_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Estancias_Hotel]  DEFAULT (''),
+	[Id] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Estancias_Id]  DEFAULT (''),
+	[Linea] [bigint] NOT NULL CONSTRAINT [DF_O_Estancias_Linea]  DEFAULT ((0)),
+	[Habitacion] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Estancias_Habitacion]  DEFAULT (''),
+	[Cuartos] [int] NOT NULL CONSTRAINT [DF_O_Estancias_Cuartos]  DEFAULT ((1)),
+	[Llegada] [date] NULL,
+	[Noches] [bigint] NOT NULL CONSTRAINT [DF_O_Estancias_Noches]  DEFAULT ((1)),
+	[Salida] [date] NULL,
+	[Adultos] [int] NOT NULL CONSTRAINT [DF_O_Estancias_Adultos]  DEFAULT ((1)),
+	[Ninos] [int] NOT NULL CONSTRAINT [DF_O_Estancias_Ninos]  DEFAULT ((0)),
+	[Juniors] [int] NOT NULL CONSTRAINT [DF_O_Estancias_Juniors]  DEFAULT ((0)),
+	[Llegada Original] [date] NULL,
+	[Salida Original] [date] NULL,
+	[Hora Entrada] [time](0) NULL,
+	[Hora Salida] [time](0) NULL,
+	[Up/Down Grade] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Estancias_Up/Down Grade]  DEFAULT (''),
+	[Codigo Tarifa] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Estancias_Codigo Tarifa]  DEFAULT (''),
+	[Tarifa] [numeric](18, 2) NOT NULL CONSTRAINT [DF_O_Estancias_Tarifa]  DEFAULT ((0)),
+	[Divisa] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Estancias_Divisa]  DEFAULT ('MXN'),
+	[Tipo Tarifa] [nvarchar](1) NOT NULL CONSTRAINT [DF_O_Estancias_Tipo Tarifa]  DEFAULT (''),
+ CONSTRAINT [PK_O_Estancias] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Id] ASC,
+	[Linea] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[O_Huespedes]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[O_Huespedes](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_O_Huespedes_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Huespedes_Hotel]  DEFAULT (''),
+	[Id] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Huespedes_Id]  DEFAULT (''),
+	[Perfil Id] [bigint] NOT NULL CONSTRAINT [DF_O_Huespedes_Perfil Id]  DEFAULT ((0)),
+	[Tipo Reservacion] [nvarchar](3) NOT NULL CONSTRAINT [DF_O_Huespedes_Tipo Reservacion]  DEFAULT (''),
+	[Titulo] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_Titulo]  DEFAULT (''),
+	[Apellido] [nvarchar](60) NOT NULL CONSTRAINT [DF_O_Huespedes_Apellido]  DEFAULT (''),
+	[Apellido 2] [nvarchar](60) NOT NULL CONSTRAINT [DF_O_Huespedes_Apellido 2]  DEFAULT (''),
+	[Nombre] [nvarchar](60) NOT NULL CONSTRAINT [DF_O_Huespedes_Nombre]  DEFAULT (''),
+	[Nombre 2] [nvarchar](60) NOT NULL CONSTRAINT [DF_O_Huespedes_Nombre 2]  DEFAULT (''),
+	[Pais] [nvarchar](3) NOT NULL CONSTRAINT [DF_O_Huespedes_Pais]  DEFAULT (''),
+	[Ciudad] [nvarchar](3) NOT NULL CONSTRAINT [DF_O_Huespedes_Ciudad]  DEFAULT (''),
+	[Idioma] [nvarchar](2) NOT NULL CONSTRAINT [DF_O_Huespedes_Idioma]  DEFAULT (''),
+	[Direccion] [nvarchar](250) NOT NULL CONSTRAINT [DF_O_Huespedes_Direccion]  DEFAULT (''),
+	[Contacto] [nvarchar](100) NOT NULL CONSTRAINT [DF_O_Huespedes_Contacto]  DEFAULT (''),
+	[Telefono] [nvarchar](100) NOT NULL CONSTRAINT [DF_O_Huespedes_Telefono]  DEFAULT (''),
+	[Email] [nvarchar](100) NOT NULL CONSTRAINT [DF_O_Huespedes_Email]  DEFAULT (''),
+	[S Mercado] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_S Mercado]  DEFAULT (''),
+	[S Venta] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_S Venta]  DEFAULT (''),
+	[Origen] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_Origen]  DEFAULT (''),
+	[Medio] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_Medio]  DEFAULT (''),
+	[Grupo] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Huespedes_Grupo]  DEFAULT (''),
+	[Agencia] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Huespedes_Agencia]  DEFAULT (''),
+	[Cupon] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Huespedes_Cupon]  DEFAULT (''),
+	[Empresa] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Huespedes_Empresa]  DEFAULT (''),
+	[Vip] [int] NOT NULL CONSTRAINT [DF_O_Huespedes_VIP]  DEFAULT ((0)),
+	[Fecha Rva] [date] NULL,
+	[Usuario Captura] [nvarchar](50) NOT NULL CONSTRAINT [DF_O_Huespedes_Usuario Capturo]  DEFAULT (''),
+	[Fecha Captura] [date] NULL,
+	[Usuario Cancela] [nvarchar](50) NOT NULL CONSTRAINT [DF_O_Huespedes_Usuario Cancela]  DEFAULT (''),
+	[Fecha Cancela] [date] NULL,
+	[Id Maestro] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Huespedes_Id Maestro]  DEFAULT (''),
+	[Forma de Pago] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_Codigo Pago]  DEFAULT (''),
+	[Numero Tarjeta] [nvarchar](16) NOT NULL CONSTRAINT [DF_O_Huespedes_Numero Tarjeta]  DEFAULT (''),
+	[Nombre Tarjeta] [nvarchar](100) NOT NULL CONSTRAINT [DF_O_Huespedes_Nombre Tarjeta]  DEFAULT (''),
+	[Expira Tarjeta] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Huespedes_Expira Tarjeta]  DEFAULT (''),
+	[Detalle Tarjeta] [nvarchar](250) NOT NULL CONSTRAINT [DF_O_Huespedes_Detalle Tarjeta]  DEFAULT (''),
+	[Estatus] [nvarchar](2) NOT NULL CONSTRAINT [DF_O_Huespedes_Estatus]  DEFAULT (''),
+ CONSTRAINT [PK_O_Huespedes] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[O_Respuestas Cuestionario Huespedes]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[O_Respuestas Cuestionario Huespedes](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Tipo Cuestionario]  DEFAULT (''),
+	[No Pregunta] [int] NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_No Pregunta]  DEFAULT ((1)),
+	[Id] [nvarchar](20) NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Id]  DEFAULT (''),
+	[No Respuesta] [int] NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_No Respuesta]  DEFAULT ((1)),
+	[Calificacion] [int] NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Calificacion]  DEFAULT ((0)),
+	[Texto] [nvarchar](250) NOT NULL CONSTRAINT [DF_O_Respuestas Cuestionario Huespedes_Texto]  DEFAULT (''),
+ CONSTRAINT [PK_O_Respuestas Cuestionario Huespedes] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC,
+	[No Pregunta] ASC,
+	[Id] ASC,
+	[No Respuesta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[S_Configuracion Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[S_Configuracion Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Tipo Cuestionario]  DEFAULT (''),
+	[Email Saliente] [nvarchar](100) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Email Saliente]  DEFAULT (''),
+	[Servidor SMTP] [nvarchar](70) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Servidor SMTP]  DEFAULT (''),
+	[Usuario SMTP] [nvarchar](50) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Usuario SMTP]  DEFAULT (''),
+	[Contrasena SMTP] [nvarchar](50) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Contrasena SMTP]  DEFAULT (''),
+	[Puerto SMTP] [bigint] NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Puerto SMTP]  DEFAULT ((25)),
+	[Texto Superior] [nvarchar](500) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Texto Superior]  DEFAULT (''),
+	[Texto Superior Ingles] [nvarchar](500) NOT NULL CONSTRAINT [DF_S_Configuracion Cuestionario_Texto Superior Ingles]  DEFAULT (''),
+ CONSTRAINT [PK_S_Configuracion Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[S_Corporativos]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[S_Corporativos](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_S_Corporativos_Corporativo]  DEFAULT ((1)),
+	[Nombre Corporativo] [nvarchar](150) NOT NULL CONSTRAINT [DF_S_Corporativos_Nombre Corporativo]  DEFAULT (''),
+ CONSTRAINT [PK_S_Corporativos] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[S_Correos Cuestionario]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[S_Correos Cuestionario](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_S_Correos Cuestionario_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_S_Correos Cuestionario_Hotel]  DEFAULT (''),
+	[Tipo Cuestionario] [nvarchar](5) NOT NULL CONSTRAINT [DF_S_Correos Cuestionario_Tipo Cuestionario]  DEFAULT (''),
+	[Email] [nvarchar](100) NOT NULL CONSTRAINT [DF_S_Correos Cuestionario_Email]  DEFAULT (''),
+	[Descripcion] [nvarchar](70) NOT NULL CONSTRAINT [DF_S_Correos Cuestionario_Descripcion]  DEFAULT (''),
+ CONSTRAINT [PK_S_Correos Cuestionario] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC,
+	[Tipo Cuestionario] ASC,
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[S_Hoteles]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[S_Hoteles](
+	[Corporativo] [bigint] NOT NULL CONSTRAINT [DF_S_Hoteles_Corporativo]  DEFAULT ((1)),
+	[Hotel] [nvarchar](10) NOT NULL CONSTRAINT [DF_S_Hoteles_Hotel]  DEFAULT (''),
+	[Nombre Hotel] [nvarchar](150) NOT NULL CONSTRAINT [DF_S_Hoteles_Nombre Hotel]  DEFAULT (''),
+	[RFC] [nvarchar](20) NOT NULL CONSTRAINT [DF_S_Hoteles_RFC]  DEFAULT (''),
+	[Direccion] [nvarchar](150) NOT NULL CONSTRAINT [DF_S_Hoteles_Direccion]  DEFAULT (''),
+	[Fecha] [date] NULL,
+	[Licencia] [nvarchar](50) NOT NULL CONSTRAINT [DF_S_Hoteles_Licencia]  DEFAULT (''),
+ CONSTRAINT [PK_S_Hoteles] PRIMARY KEY CLUSTERED 
+(
+	[Corporativo] ASC,
+	[Hotel] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  View [dbo].[Consulta_Huesped]    Script Date: 16/05/2017 11:17:58 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [dbo].[Consulta_Huesped]
+AS
+SELECT      O_Estancias.Corporativo, O_Estancias.Hotel, O_Estancias.Id, O_Estancias.Linea, O_Estancias.Habitacion, O_Estancias.Llegada, O_Estancias.Noches, O_Estancias.Salida, 
+ (O_Huespedes.Titulo + ' ' + O_Huespedes.Apellido + ' ' + O_Huespedes.[Apellido 2] + ', ' + O_Huespedes.Nombre + ' ' + O_Huespedes.[Nombre 2]) as Nombre, O_Huespedes.Email
+FROM            O_Estancias INNER JOIN
+                         O_Huespedes ON O_Estancias.Corporativo = O_Huespedes.Corporativo
+
+
+
+GO
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 1, N'Opcio', N'¿Cuantas veces nos ha visitado en los ultimos 3 meses?', N'¿Cuantas veces nos ha visitado en los ultimos 30 dias? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 2, N'Opcio', N'¿Cree que volverá a visitarnos en los próximos 3 meses?', N'¿Cree que volverá a visitarnos en los próximos 90 días? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 3, N'Opcio', N'¿Por que motivo nos visita?', N'¿Por que motivo nos visita? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 4, N'Opcio', N'¿Como se entero de nosotros?', N'¿Como se entero de nosotros? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 5, N'Selec', N'¿Que actividades fueron de su agrado dentro del Hotel?', N'¿Que actividades fueron de su agrado dentro del Hotel? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 6, N'Calif', N'Basándose en su experiencia dentro de la Habitacion, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena.', N'Basándose en su experiencia dentro del Hotel, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena. Ingles', 5)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 7, N'Calif', N'Basándose en su experiencia dentro del Restaurant, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena.', N'Basándose en su experiencia dentro del Hotel, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena. Ingles', 5)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 8, N'Calif', N'Basándose en su experiencia dentro del Spa, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena.', N'Basándose en su experiencia dentro del Hotel, por favor, puntúe los siguientes aspectos, donde 1=Muy mala y 5= Muy buena. Ingles', 5)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 9, N'Abier', N'¿Que fue lo que mas le gusto en su visita?', N'¿Que fue lo que mas le gusto en su visita? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 10, N'Abier', N'¿Que fue lo que no le gusto en su visita?', N'¿Que fue lo que no le gusto en su visita? Ingles', 1)
+INSERT [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Tipo Pregunta], [Pregunta], [Pregunta Ingles], [Calificacion Maxima]) VALUES (1, N'BK', N'H', 11, N'Abier', N'¿Tiene algun comentario para poder mejorar nuestro servicio?', N'¿Tiene algun comentario para poder mejorar nuestro servicio? Ingles', 1)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 1, 1, N'1-3', N'1-3 Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 1, 2, N'4-6', N'4-6 Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 1, 3, N'7 o mas', N'7 o mas Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 2, 1, N'Si', N'Si Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 2, 2, N'No', N'No Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 2, 3, N'No estoy seguro', N'No estoy seguro Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 3, 1, N'Placer', N'Placer Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 3, 2, N'Negocios', N'Negocios Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 4, 1, N'Television', N'Television Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 4, 2, N'Revista', N'Revista Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 4, 3, N'Pagina web', N'Pagina web Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 4, 4, N'Recomendacion', N'Recomendacion Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 4, 5, N'Otro', N'Otro Ingles', 1)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 5, 1, N'Actividades de alberca', N'Actividades de alberca Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 5, 2, N'Teatro', N'Teatro Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 5, 3, N'Voleibol de playa', N'Voleibol de playa Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 5, 4, N'Otro', N'Otro Ingles', 1)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 6, 1, N'Limpieza  general de la Habitacion', N'Limpieza general de la Habitacion Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 6, 2, N'Estado del mobiliario', N'Estado del mobiliario Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 6, 3, N'Iluminacion en la habitacion', N'Iluminacion en la habitacion Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 6, 4, N'Limpieza del baño', N'Limpieza del baño Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 7, 1, N'Calidad de los alimentos', N'Calidad de los alimentos Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 7, 2, N'Presentacion del platillo', N'Presentacion del platillo Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 7, 3, N'Temperatura de los alimentos', N'Temperatura de los alimentos Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 7, 4, N'Tiempo de preparacion', N'Tiempo de preparacion Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 8, 1, N'Cordialidad del terapeuta', N'Cordialidad del terapeuta Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 8, 2, N'Limpieza de la cabina', N'Limpieza de la cabina Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 8, 3, N'Calidad de los instrumentos', N'Calidad de los instrumentos Ingles', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 9, 1, N'', N'', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 10, 1, N'', N'', 0)
+INSERT [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta], [Respuesta], [Respuesta Ingles], [Respuesta Abierta]) VALUES (1, N'BK', N'H', 11, 1, N'', N'', 0)
+INSERT [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'C', N'Cuestionario para Cliente Distinguido', N'')
+INSERT [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'E', N'Cuestionario para Empresas', N'')
+INSERT [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'H', N'Cuestionario para Huespedes', N'')
+INSERT [dbo].[C_Tipos Pregunta Cuestionario] ([Corporativo], [Hotel], [Tipo Pregunta], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'Abier', N'Pregunta Abierta', N'')
+INSERT [dbo].[C_Tipos Pregunta Cuestionario] ([Corporativo], [Hotel], [Tipo Pregunta], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'Calif', N'Pregunta de Calificacion', N'')
+INSERT [dbo].[C_Tipos Pregunta Cuestionario] ([Corporativo], [Hotel], [Tipo Pregunta], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'Opcio', N'Pregunta de Opcion Multiple', N'')
+INSERT [dbo].[C_Tipos Pregunta Cuestionario] ([Corporativo], [Hotel], [Tipo Pregunta], [Descripcion], [Descripcion Ingles]) VALUES (1, N'BK', N'Selec', N'Pregunta con Selecciones', N'')
+INSERT [dbo].[O_Estancias] ([Corporativo], [Hotel], [Id], [Linea], [Habitacion], [Cuartos], [Llegada], [Noches], [Salida], [Adultos], [Ninos], [Juniors], [Llegada Original], [Salida Original], [Hora Entrada], [Hora Salida], [Up/Down Grade], [Codigo Tarifa], [Tarifa], [Divisa], [Tipo Tarifa]) VALUES (1, N'BK', N'0000001', 1, N'1001', 1, CAST(N'2017-05-14' AS Date), 1, CAST(N'2017-05-15' AS Date), 1, 0, 0, CAST(N'2017-05-14' AS Date), CAST(N'2017-05-15' AS Date), CAST(N'10:30:00' AS Time), CAST(N'10:30:00' AS Time), N'', N'EP', CAST(1500.00 AS Numeric(18, 2)), N'MXN', N'2')
+INSERT [dbo].[O_Huespedes] ([Corporativo], [Hotel], [Id], [Perfil Id], [Tipo Reservacion], [Titulo], [Apellido], [Apellido 2], [Nombre], [Nombre 2], [Pais], [Ciudad], [Idioma], [Direccion], [Contacto], [Telefono], [Email], [S Mercado], [S Venta], [Origen], [Medio], [Grupo], [Agencia], [Cupon], [Empresa], [Vip], [Fecha Rva], [Usuario Captura], [Fecha Captura], [Usuario Cancela], [Fecha Cancela], [Id Maestro], [Forma de Pago], [Numero Tarjeta], [Nombre Tarjeta], [Expira Tarjeta], [Detalle Tarjeta], [Estatus]) VALUES (1, N'BK', N'0000001', 0, N'RV', N'Mr', N'Miranda', N'Rojas', N'Mauricio', N'', N'MX', N'MX', N'SP', N'', N'', N'', N'', N'', N'', N'', N'', N'', N'', N'', N'', 0, NULL, N'', NULL, N'', NULL, N'', N'', N'', N'', N'', N'', N'CO')
+INSERT [dbo].[O_Respuestas Cuestionario Huespedes] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Id], [No Respuesta], [Calificacion], [Texto]) VALUES (1, N'BK', N'H', 1, N'0000001', 3, 0, N'')
+INSERT [dbo].[O_Respuestas Cuestionario Huespedes] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Id], [No Respuesta], [Calificacion], [Texto]) VALUES (1, N'BK', N'H', 6, N'0000001', 1, 4, N'')
+INSERT [dbo].[O_Respuestas Cuestionario Huespedes] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Id], [No Respuesta], [Calificacion], [Texto]) VALUES (1, N'BK', N'H', 6, N'0000001', 2, 2, N'')
+INSERT [dbo].[O_Respuestas Cuestionario Huespedes] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [Id], [No Respuesta], [Calificacion], [Texto]) VALUES (1, N'BK', N'H', 9, N'0000001', 1, 0, N'La recepcionista')
+INSERT [dbo].[S_Configuracion Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Email Saliente], [Servidor SMTP], [Usuario SMTP], [Contrasena SMTP], [Puerto SMTP], [Texto Superior], [Texto Superior Ingles]) VALUES (1, N'BK', N'H', N'mauricio.miranda@bluekey.com.mx', N'mail.bluekey.com.mx', N'mauricio.miranda', N'ChidoLilo', 587, N'Es para nosotros un placer haber tenido su visita en este su Hotel, es nuestro compromiso y principal motivación el que su estancia haya sido placentera, productiva e inolvidable. No deje de visitarnos en su proximo viaje a esta bella ciudad y siéntase como en casa. Gracias, por preferirnos y hacer de Binn Hotel su lugar para quedarse en Medellin. 
+A continuación encontrara un breve cuestionario en el cual solicitamos su apoyo para responderlo ya que su opinión es muy valiosa para nosotros.', N'It is a pleasure for us having your visit in this your hotel is our main motivation commitment and that their stay has been pleasant, productive and unforgettable. Be sure to visit us on your next trip to this beautiful city and feel at home. Thank you for choosing and make Binn Hotel your place to stay in Medellin. 
+The following is a brief questionnaire in which to reply to request your support as your feedback is very valuable to us.')
+INSERT [dbo].[S_Corporativos] ([Corporativo], [Nombre Corporativo]) VALUES (1, N'Bluekey')
+INSERT [dbo].[S_Correos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Email], [Descripcion]) VALUES (1, N'BK', N'H', N'jorge.cedillo@bluekey.com.mx', N'Gerencia')
+INSERT [dbo].[S_Correos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [Email], [Descripcion]) VALUES (1, N'BK', N'H', N'rodrigo.tapia@bluekey.com.mx', N'Soporte')
+INSERT [dbo].[S_Hoteles] ([Corporativo], [Hotel], [Nombre Hotel], [RFC], [Direccion], [Fecha], [Licencia]) VALUES (1, N'BK', N'Hotel Bluekey', N'BLU1604156S6', N'Cd de Mexico', CAST(N'2017-05-15' AS Date), N'')
+ALTER TABLE [dbo].[C_Preguntas Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Preguntas Cuestionario_C_Tipos Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Cuestionario])
+REFERENCES [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario])
+GO
+ALTER TABLE [dbo].[C_Preguntas Cuestionario] CHECK CONSTRAINT [FK_C_Preguntas Cuestionario_C_Tipos Cuestionario]
+GO
+ALTER TABLE [dbo].[C_Preguntas Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Preguntas Cuestionario_C_Tipos Pregunta Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Pregunta])
+REFERENCES [dbo].[C_Tipos Pregunta Cuestionario] ([Corporativo], [Hotel], [Tipo Pregunta])
+GO
+ALTER TABLE [dbo].[C_Preguntas Cuestionario] CHECK CONSTRAINT [FK_C_Preguntas Cuestionario_C_Tipos Pregunta Cuestionario]
+GO
+ALTER TABLE [dbo].[C_Preguntas Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Preguntas Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[C_Preguntas Cuestionario] CHECK CONSTRAINT [FK_C_Preguntas Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[C_Respuestas Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Respuestas Cuestionario_C_Preguntas Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta])
+REFERENCES [dbo].[C_Preguntas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta])
+GO
+ALTER TABLE [dbo].[C_Respuestas Cuestionario] CHECK CONSTRAINT [FK_C_Respuestas Cuestionario_C_Preguntas Cuestionario]
+GO
+ALTER TABLE [dbo].[C_Respuestas Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Respuestas Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[C_Respuestas Cuestionario] CHECK CONSTRAINT [FK_C_Respuestas Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[C_Tipos Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Tipos Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[C_Tipos Cuestionario] CHECK CONSTRAINT [FK_C_Tipos Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[C_Tipos Pregunta Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_C_Tipos Pregunta Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[C_Tipos Pregunta Cuestionario] CHECK CONSTRAINT [FK_C_Tipos Pregunta Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[O_Estancias]  WITH CHECK ADD  CONSTRAINT [FK_O_Estancias_O_Huespedes] FOREIGN KEY([Corporativo], [Hotel], [Id])
+REFERENCES [dbo].[O_Huespedes] ([Corporativo], [Hotel], [Id])
+GO
+ALTER TABLE [dbo].[O_Estancias] CHECK CONSTRAINT [FK_O_Estancias_O_Huespedes]
+GO
+ALTER TABLE [dbo].[O_Estancias]  WITH CHECK ADD  CONSTRAINT [FK_O_Estancias_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[O_Estancias] CHECK CONSTRAINT [FK_O_Estancias_S_Hoteles]
+GO
+ALTER TABLE [dbo].[O_Huespedes]  WITH CHECK ADD  CONSTRAINT [FK_O_Huespedes_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[O_Huespedes] CHECK CONSTRAINT [FK_O_Huespedes_S_Hoteles]
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes]  WITH CHECK ADD  CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_C_Respuestas Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta])
+REFERENCES [dbo].[C_Respuestas Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario], [No Pregunta], [No Respuesta])
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes] CHECK CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_C_Respuestas Cuestionario]
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes]  WITH CHECK ADD  CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_O_Huespedes] FOREIGN KEY([Corporativo], [Hotel], [Id])
+REFERENCES [dbo].[O_Huespedes] ([Corporativo], [Hotel], [Id])
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes] CHECK CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_O_Huespedes]
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes]  WITH CHECK ADD  CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[O_Respuestas Cuestionario Huespedes] CHECK CONSTRAINT [FK_O_Respuestas Cuestionario Huespedes_S_Hoteles]
+GO
+ALTER TABLE [dbo].[S_Configuracion Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_S_Configuracion Cuestionario_C_Tipos Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Cuestionario])
+REFERENCES [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario])
+GO
+ALTER TABLE [dbo].[S_Configuracion Cuestionario] CHECK CONSTRAINT [FK_S_Configuracion Cuestionario_C_Tipos Cuestionario]
+GO
+ALTER TABLE [dbo].[S_Configuracion Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_S_Configuracion Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[S_Configuracion Cuestionario] CHECK CONSTRAINT [FK_S_Configuracion Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[S_Correos Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_S_Correos Cuestionario_C_Tipos Cuestionario] FOREIGN KEY([Corporativo], [Hotel], [Tipo Cuestionario])
+REFERENCES [dbo].[C_Tipos Cuestionario] ([Corporativo], [Hotel], [Tipo Cuestionario])
+GO
+ALTER TABLE [dbo].[S_Correos Cuestionario] CHECK CONSTRAINT [FK_S_Correos Cuestionario_C_Tipos Cuestionario]
+GO
+ALTER TABLE [dbo].[S_Correos Cuestionario]  WITH CHECK ADD  CONSTRAINT [FK_S_Correos Cuestionario_S_Hoteles] FOREIGN KEY([Corporativo], [Hotel])
+REFERENCES [dbo].[S_Hoteles] ([Corporativo], [Hotel])
+GO
+ALTER TABLE [dbo].[S_Correos Cuestionario] CHECK CONSTRAINT [FK_S_Correos Cuestionario_S_Hoteles]
+GO
+ALTER TABLE [dbo].[S_Hoteles]  WITH CHECK ADD  CONSTRAINT [FK_S_Hoteles_S_Corporativos] FOREIGN KEY([Corporativo])
+REFERENCES [dbo].[S_Corporativos] ([Corporativo])
+GO
+ALTER TABLE [dbo].[S_Hoteles] CHECK CONSTRAINT [FK_S_Hoteles_S_Corporativos]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "O_Estancias"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 247
+            End
+            DisplayFlags = 280
+            TopColumn = 17
+         End
+         Begin Table = "O_Huespedes"
+            Begin Extent = 
+               Top = 6
+               Left = 285
+               Bottom = 136
+               Right = 494
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'Consulta_Huesped'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'Consulta_Huesped'
+GO

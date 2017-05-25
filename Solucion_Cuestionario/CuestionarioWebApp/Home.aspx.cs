@@ -12,10 +12,12 @@ namespace CuestionarioWebApp
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+
             List<C_Preguntas_Cuestionario> allPreguntas = null;
             using (CuestionarioEntities dp = new CuestionarioEntities())
             {
-                var pregunta= (from a in dp.C_Preguntas_Cuestionario 
+                                var pregunta= (from a in dp.C_Preguntas_Cuestionario 
                                select new {a});
                 if (pregunta != null)
                 {
