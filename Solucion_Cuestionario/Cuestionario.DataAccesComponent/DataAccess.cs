@@ -16,7 +16,7 @@ namespace Cuestionario.DataAccesComponent
 
         public DataAccess()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["pagosProvisionalesConnectionString"].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["CuestionarioConnectionString"].ConnectionString;
             _timeOut = int.Parse(ConfigurationManager.AppSettings["CommandTimeOut"]);
         }
 

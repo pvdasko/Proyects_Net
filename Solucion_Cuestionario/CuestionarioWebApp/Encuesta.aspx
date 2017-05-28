@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CuestionarioWebApp.Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Encuesta.aspx.cs" Inherits="CuestionarioWebApp.Encuesta" %>
 
 <!DOCTYPE html>
 
@@ -27,33 +27,35 @@
 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="Home.aspx">Home</a></li>
-                            <li><a href="#">Admin</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li class="active"><a href="Encuesta.aspx">Encuesta</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contac</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
             <br />
             <br />
-            <br />
-
             <div class="panel panel-default">
                 <div class="panel-body">
-                    Test web app
-                    <br />
-                    <asp:Label ID="lblCorpo" runat="server" Text="Corporativo" CssClass="label label-default" Width="80px"></asp:Label>
-                    <asp:DropDownList ID="ddlCorpo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlCorpo_SelectedIndexChanged" Width="100px"></asp:DropDownList>
-                    <br />
-                    <asp:Label ID="lblHotel" runat="server" Text="Hotel" CssClass="label label-default" Width="80"></asp:Label>
-                    <asp:DropDownList ID="ddlHotel" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlHotel_SelectedIndexChanged" Width="100px"></asp:DropDownList>
 
-                    <br />
-                    <asp:Label ID="lbltipo" runat="server" Text="Cuestionario" CssClass="label label-default" Width="80"></asp:Label>
-                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged" Width="100px"></asp:DropDownList>
-                    <br />
+                    <asp:Repeater ID="RprEncuesta" runat="server">
+                        <HeaderTemplate>
+                            <table>
+                                <%--<%#encuestaHeader()%>--%>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <%#encuestaItem(Container.DataItem)%>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" CssClass="btn btn-default" OnClick="btnSend_Click" />                        
+                    </div>
                 </div>
+
             </div>
 
             <div class="panel-footer">Blue Key 2016</div>

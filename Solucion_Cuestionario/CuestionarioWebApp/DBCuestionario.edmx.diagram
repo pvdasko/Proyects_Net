@@ -34,6 +34,7 @@
         <AssociationConnector Association="CuestionarioModelContext.FK_S_Configuracion_Cuestionario_S_Hoteles" ManuallyRouted="false" />
         <AssociationConnector Association="CuestionarioModelContext.FK_S_Hoteles_S_Corporativos" ManuallyRouted="false" />
         <AssociationConnector Association="CuestionarioModelContext.FK_S_Correos_Cuestionario_S_Hoteles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CuestionarioModelContext.Consulta_Encuesta" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

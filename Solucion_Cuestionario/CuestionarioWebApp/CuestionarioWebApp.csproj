@@ -68,12 +68,16 @@
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="Encuesta.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home.aspx" />
+    <Content Include="img\logo_only.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="C_Preguntas_Cuestionario.cs">
@@ -103,6 +107,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBCuestionario.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Encuesta.aspx.cs">
+      <DependentUpon>Encuesta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Encuesta.aspx.designer.cs">
+      <DependentUpon>Encuesta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -110,6 +121,7 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Mail.cs" />
     <Compile Include="O_Estancias.cs">
       <DependentUpon>DBCuestionario.tt</DependentUpon>
     </Compile>
@@ -169,6 +181,19 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExtendedModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cuestionario.BusinessRuleComponent\Cuestionario.BusinessRuleComponent.csproj">
+      <Project>{e9623daa-bf56-4145-8254-b75b1a9ba62e}</Project>
+      <Name>Cuestionario.BusinessRuleComponent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cuestionario.DataAccesComponent\Cuestionario.DataAccesComponent.csproj">
+      <Project>{e5b3a94a-bc09-403e-81ac-80389cb5293c}</Project>
+      <Name>Cuestionario.DataAccesComponent</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
