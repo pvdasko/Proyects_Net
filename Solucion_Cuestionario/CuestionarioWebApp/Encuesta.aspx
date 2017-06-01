@@ -7,15 +7,41 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        function myFunction(val, id) {
+            //alert("The input value has changed. The new value is: " + val + " id:" + id);           
+            $.ajax({
+                type: "POST",
+                data: "{ idrespuesta: '" + id + "', valor: '" + val + "' }",
+                url: "Encuesta.aspx/insRespuesta",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#lblMensajes").append(msg);
+                    $("#lblMensajes").append("<br />");
+                },
+                error: function (msg) { alert("Error al insertar registro."); }
+            });
+        }
+
+        function onMetodoOk(resultado) {
+            // Acciones para realizar con resultado
+
+        }
+
+        function onMetodoError(error) {
+            alert(error.get_message());
+        }
+    </script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">     
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -49,15 +75,16 @@
                         </ItemTemplate>
                         <FooterTemplate>
                             </table>
+                       
                         </FooterTemplate>
                     </asp:Repeater>
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" CssClass="btn btn-default" OnClick="btnSend_Click" />                        
+                        <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" CssClass="btn btn-default" OnClick="btnSend_Click" />
                     </div>
                 </div>
 
             </div>
-
+            <label id="lblMensajes" />
             <div class="panel-footer">Blue Key 2016</div>
         </div>
     </form>

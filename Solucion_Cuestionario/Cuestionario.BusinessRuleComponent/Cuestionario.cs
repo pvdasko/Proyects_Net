@@ -49,7 +49,7 @@ namespace Cuestionario.BusinessRuleComponent
         public string construyeHeader()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<tr><td>Encuesta de satisafacción / Satisfaction survey</td></tr>");
+            sb.Append("<tr><td>Encuesta de satisafacci�n / Satisfaction survey</td></tr>");
             return sb.ToString();
         }
 
@@ -102,7 +102,7 @@ namespace Cuestionario.BusinessRuleComponent
 
                 case "Abier":
                     sb.Append("<tr>");
-                    sb.Append("<td><input id=\"txt" + dnopregunta + dnorespuesta + "\" type=\"text\" />&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
+                    sb.Append("<td><input id=" + dtipopregunta  + dnopregunta + "_" + dnorespuesta + "\" type=\"text\" onchange=\"myFunction(this.value, this.id)\" class=\"form-control\" aria-describedby=\"sizing-addon2\" />&nbsp<span>" + drespuesta + "</span></td>");
                     sb.Append("</tr>");
                     sb.Append("<tr><td>&nbsp</td></tr> ");
                     break;
@@ -111,7 +111,7 @@ namespace Cuestionario.BusinessRuleComponent
                     sb.Append("<tr><td>");
                     for (int i = 1; i <= dcalifmax + 1; i++)
                     {
-                        sb.Append("&nbsp<input name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\" />");
+                        sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\"/>");
                     }
 
                     sb.Append("&nbsp<span class=\"text\">" + drespuesta + "</span></td></tr>");                  
@@ -122,12 +122,12 @@ namespace Cuestionario.BusinessRuleComponent
                     sb.Append("<tr>");
                     if (!drespabierta)
                     {
-                        sb.Append("<td><input name=\"Rad" + dnopregunta + "\" type=\"radio\" />&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
+                        sb.Append("<td><input id = " + dtipopregunta  + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\"/>&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
                         sb.Append("<tr><td>&nbsp</td></tr> ");
                     }
                     else
                     {
-                        sb.Append("<td class=\"col-sm-10\"><span class=\"control-label col-md-2t\">" + drespuesta + "</span>&nbsp<input id=\"txt" + dnopregunta + dnorespuesta + "\" type=\"text\" /></td>");
+                        sb.Append("<td class=\"col-sm-10\"><span>" + dtipopregunta + drespuesta + "&nbsp<input id=" + dnopregunta + "_" + dnorespuesta + "\" type=\"text\" onchange=\"myFunction(this.value, ths.id)\" class=\"form-control\" aria-label=\"...\"\"/></span></td>");
                         sb.Append("<tr><td>&nbsp</td></tr> ");
                      
                     }
@@ -136,7 +136,7 @@ namespace Cuestionario.BusinessRuleComponent
 
                 case "Selec":
                     sb.Append("<tr>");
-                    sb.Append("<td><input id=\"Chk" + dnopregunta + dnorespuesta + "\" type=\"checkbox\"  />&nbsp<span class=\"text\"  >" + drespuesta + "</span></td>");
+                    sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + "\" type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\" />&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
                     sb.Append("</tr>");
                     sb.Append("<tr><td>&nbsp</td></tr> ");
                     break;
