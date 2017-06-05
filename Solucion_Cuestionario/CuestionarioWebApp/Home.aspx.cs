@@ -12,8 +12,9 @@ namespace CuestionarioWebApp
         int pcorpo;
         string photel;
         string ptipo;
+        string pfolio;
+               
 
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -104,11 +105,51 @@ namespace CuestionarioWebApp
                
         protected void ddlTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["sTipo"] = ddlTipo.SelectedValue;
+                        
+        }
+        
+
+        protected void testmail_Click(object sender, EventArgs e)
+        {
+           
+            Mail correo = new Mail();
+            correo.SMTP = "smtp.gmail.com"; //"mail.bluekey.com.mx";
+            correo.MailFrom = "pvdasko@gmail.com";               //"mauricio.miranda@bluekey.com.mx";
+            correo.MailTo = "noe_rom@outlook.com";
+            correo.IsHTML = true;
+            correo.sendMail("mensaje de prueba", "este es el cuerpo del mensaje");
+
+        
+        }
+
+        protected void btnTest_Click1(object sender, EventArgs e)
+        {
             pcorpo = (int)Session["sCorpo"];
             photel = (string)Session["sHotel"];
-            ptipo = ddlTipo.SelectedValue; 
-            Response.Redirect("Encuesta.aspx?Corpo=" + pcorpo + "&hotel=" + photel + "&tipo=" + ptipo + "&folio=00001" );
+            ptipo = (string)Session["sTipo"];
+            pfolio = txtFolio.Value  ;
+            Response.Redirect("Encuesta.aspx?Corpo=" + pcorpo + "&hotel=" + photel + "&tipo=" + ptipo + "&folio=" + pfolio);
+
         }
+
+        protected void btnMail_Click(object sender, EventArgs e)
+        {
+            Mail correo = new Mail();
+            correo.SMTP = "smtp.gmail.com"; //"mail.bluekey.com.mx";
+            correo.MailFrom = "pvdasko@gmail.com";               //"mauricio.miranda@bluekey.com.mx";
+            correo.MailTo = "noe_rom@outlook.com";
+            correo.IsHTML = true;
+            correo.sendMail("mensaje de prueba", "este es el cuerpo del mensaje");
+
+            ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert('Correo end¿viado')</script>");
+        }
+
+        
+      
+
+      
+      
         
     }
 }

@@ -1,1 +1,15 @@
 http://www.dotnetawesome.com/2015/04/how-to-implement-basic-crud-functionality-entity-framework-aspnet-webforms.html
+https://www.sitepoint.com/community/t/if-statement-in-asp-repeater/1455/8
+http://blog.siinet.com/2015/11/17/bootstrap-y-asp-net/
+http://www.c-sharpcorner.com/UploadFile/8911c4/how-to-create-and-read-values-of-dynamic-controls-in-Asp-Net/
+
+
+protected void Page_Load(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close();</script>");
+        }
+
+
+recuperar disco
+https://www.youtube.com/watch?v=jhWbSM-630E

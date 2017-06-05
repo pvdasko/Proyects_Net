@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; 
-using System.Data; 
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -49,7 +49,7 @@ namespace Cuestionario.BusinessRuleComponent
         public string construyeHeader()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<tr><td>Encuesta de satisafacci�n / Satisfaction survey</td></tr>");
+            sb.Append("<tr><td>Encuesta de satisafacción / Satisfaction survey</td></tr>");
             return sb.ToString();
         }
 
@@ -62,88 +62,98 @@ namespace Cuestionario.BusinessRuleComponent
             string dnopregunta;
             string dtipopregunta;
             string dpregunta;
-            int    dcalifmax;
+            int dcalifmax;
             string drespuesta;
             string dnorespuesta;
-            bool  drespabierta;
+            bool drespabierta;
+            int maximo;
 
-            info= (DataRowView) datos;
+            info = (DataRowView)datos;
 
-            dnopregunta = info["No Pregunta"].ToString ();
+            dnopregunta = info["No Pregunta"].ToString();
             dtipopregunta = info["Tipo Pregunta"].ToString();
             dpregunta = info["Pregunta"].ToString();
-            dcalifmax = int.Parse (info["Calificacion Maxima"].ToString ()); 
+            dcalifmax = int.Parse(info["Calificacion Maxima"].ToString());
             drespuesta = info["Respuesta"].ToString();
             dnorespuesta = info["No Respuesta"].ToString();
-            drespabierta = bool.Parse (info["Respuesta Abierta"].ToString ());
+            drespabierta = bool.Parse(info["Respuesta Abierta"].ToString());
+            maximo = int.Parse(info["Maximo"].ToString()); 
 
             if (dnorespuesta == "1")
             {
-                sb.Append("<tr><td><span class=\"text\"><strong >" + dpregunta + "</strong></span></td></tr>");               
+                sb.Append("<tr><td><span class=\"text-danger\"><strong >" + dpregunta + "</strong></span></td></tr>");
                 sb.Append("<tr><td>&nbsp</td></tr> ");
                 if (dtipopregunta == "Calif")
                 {
                     sb.Append("<tr>");
                     sb.Append("<td>");
-                    for (int i = 1; i<=dcalifmax ; i++ )
+                    sb.Append(" <div class=\"table table-condensed\"><table class=\"table\"><tr><th>&nbsp</th>");
+                    for (int i = 1; i <= dcalifmax; i++)
                     {
-                        sb.Append( i.ToString () + "&nbsp|&nbsp");
+                        sb.Append("<th align=\"center\">");
+                        sb.Append("&nbsp"+ i.ToString() + "&nbsp"); 
+                        sb.Append("</th>");
                     }
-                    sb.Append("&nbspN/A");
-                    sb.Append("</td>");
+                    sb.Append("<th>");
+                    sb.Append("&nbspN/A&nbsp");
+                    sb.Append("</th>");
                     sb.Append("</tr>");
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    
                 }
             }
 
 
-            switch (dtipopregunta )
+            switch (dtipopregunta)
             {
 
                 case "Abier":
                     sb.Append("<tr>");
-                    sb.Append("<td><input id=" + dtipopregunta  + dnopregunta + "_" + dnorespuesta + "\" type=\"text\" onchange=\"myFunction(this.value, this.id)\" class=\"form-control\" aria-describedby=\"sizing-addon2\" />&nbsp<span>" + drespuesta + "</span></td>");
+                    sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" class=\"form-control input-lm\" aria-label=\"...\" required/>&nbsp<span>" + drespuesta + "</span></td>");
                     sb.Append("</tr>");
                     sb.Append("<tr><td>&nbsp</td></tr> ");
                     break;
 
                 case "Calif":
                     sb.Append("<tr><td>");
+                    sb.Append("<span class=\"text\">" + drespuesta + "</span></td>");
                     for (int i = 1; i <= dcalifmax + 1; i++)
                     {
-                        sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\"/>");
-                    }
-
-                    sb.Append("&nbsp<span class=\"text\">" + drespuesta + "</span></td></tr>");                  
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                        sb.Append("<td align=\"center\">");
+                        sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" onchange=\"myFunction(this.value, this.id)\" required/>");
+                        sb.Append("</td>");
+                    }                                       
                     break;
 
                 case "Opcio":
                     sb.Append("<tr>");
                     if (!drespabierta)
                     {
-                        sb.Append("<td><input id = " + dtipopregunta  + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\"/>&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
+                        sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\" required/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
                         sb.Append("<tr><td>&nbsp</td></tr> ");
                     }
                     else
                     {
-                        sb.Append("<td class=\"col-sm-10\"><span>" + dtipopregunta + drespuesta + "&nbsp<input id=" + dnopregunta + "_" + dnorespuesta + "\" type=\"text\" onchange=\"myFunction(this.value, ths.id)\" class=\"form-control\" aria-label=\"...\"\"/></span></td>");
+                        sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, ths.id)\" onkeypress=\"validar()\" class=\"form-control input-lm\" placeholder=\"" + drespuesta + "\" /></td>");
                         sb.Append("<tr><td>&nbsp</td></tr> ");
-                     
+
                     }
                     sb.Append("</tr>");
                     break;
 
                 case "Selec":
                     sb.Append("<tr>");
-                    sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + "\" type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\" />&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
+                    sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\" />&nbsp<span class=\"text\">" + drespuesta + "</span></td>");
                     sb.Append("</tr>");
                     sb.Append("<tr><td>&nbsp</td></tr> ");
                     break;
             }
-            
 
-            
+            if (dtipopregunta =="Calif" && int.Parse (dnorespuesta) == maximo )
+                sb.Append("</tr></table></div>");
+
+            if (int.Parse(dnorespuesta) == maximo)
+                sb.Append("<tr><td>&nbsp</td></tr> ");
+
             return sb.ToString();
 
 

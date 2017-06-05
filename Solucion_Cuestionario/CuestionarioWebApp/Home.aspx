@@ -8,8 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/BlueKey.css" rel="stylesheet" />
 </head>
-<body>
+<body class=".body">
     <form id="form1" runat="server">
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -40,19 +41,28 @@
             <br />
 
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="container body-content">
                     Test web app
                     <br />
-                    <asp:Label ID="lblCorpo" runat="server" Text="Corporativo" CssClass="label label-default" Width="80px"></asp:Label>
-                    <asp:DropDownList ID="ddlCorpo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlCorpo_SelectedIndexChanged" Width="100px"></asp:DropDownList>
+                    <asp:Label ID="lblCorpo" runat="server" Text="Corporativo" CssClass="label label-primary " Width="80px"></asp:Label>
+                    <asp:DropDownList ID="ddlCorpo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlCorpo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
-                    <asp:Label ID="lblHotel" runat="server" Text="Hotel" CssClass="label label-default" Width="80"></asp:Label>
-                    <asp:DropDownList ID="ddlHotel" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlHotel_SelectedIndexChanged" Width="100px"></asp:DropDownList>
-
+                    <asp:Label ID="lblHotel" runat="server" Text="Hotel" CssClass="label label-primary" Width="80px"></asp:Label>
+                    <asp:DropDownList ID="ddlHotel" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlHotel_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
-                    <asp:Label ID="lbltipo" runat="server" Text="Cuestionario" CssClass="label label-default" Width="80"></asp:Label>
-                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged" Width="100px"></asp:DropDownList>
+                    <asp:Label ID="lbltipo" runat="server" Text="Cuestionario" CssClass="label label-primary" Width="80px"></asp:Label>
+                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
+                    <asp:Label ID="lblfolio" runat="server" Text="Folio" CssClass="label label-primary" Width="80px"></asp:Label>
+                    <span>
+                        <input type="text" placeholder="Folio" aria-describedby="sizing-addon3" id="txtFolio" runat ="server" /></span>
+                    <br />
+                    <br />
+                    <asp:Button ID="btnTest" Text="Test Page" runat="server" OnClick="btnTest_Click1" CssClass="btn btn-default btn-lm" Width="100px"/>
+                    <br />
+                    <br />
+                    <asp:Button ID="btnMail" runat="server" Text="Enviar" OnClick="btnMail_Click" CssClass="btn btn-default btn-lm" Width="100px" />
+                   
                 </div>
             </div>
 

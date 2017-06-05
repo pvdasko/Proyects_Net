@@ -60,20 +60,20 @@ namespace CuestionarioWebApp
 
         public Mail()
         {
-            mobCredentials = new System.Net.NetworkCredential("amigosprovideo@gmail.com", "rebotes28");
+            mobCredentials = new System.Net.NetworkCredential("pvdasko@gmail.com", "rebotes28");
         
         }
         public Mail(string usrCredentials, string passCredentilas)
         {
             //mobCredentials = new System.Net.NetworkCredential(usrCredentials, passCredentilas);
-            mobCredentials = new System.Net.NetworkCredential("amigosprovideo@gmail.com", "rebotes28"); 
+            mobCredentials = new System.Net.NetworkCredential("pvdasko@gmail.com", "rebotes28"); 
         
         }
 
         public Mail(string pstServerSMTP, string pstMailTo, string pstFrom, string usrCredentials, string passCredentilas)
         {
             //mobCredentials = new System.Net.NetworkCredential(usrCredentials, passCredentilas);
-            mobCredentials = new System.Net.NetworkCredential("amigosprovideo@gmail.com", "rebotes28");  
+            mobCredentials = new System.Net.NetworkCredential("pvdasko@gmail.com", "rebotes28");  
             this.mstServerSMTP = pstServerSMTP;
             this.mstSender = pstFrom;
             this.mstMailTo = pstMailTo;
@@ -105,7 +105,7 @@ namespace CuestionarioWebApp
                 msg.IsBodyHtml = this.mboIsHTML;
                 client.Host = this.mstServerSMTP;
                 client.Port = 587;
-                client.EnableSsl = true;
+                client.EnableSsl = true ;
                      
 
                 foreach (string atach in mobAttachmentsPaths)

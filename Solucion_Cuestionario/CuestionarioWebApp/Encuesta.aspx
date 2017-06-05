@@ -34,9 +34,10 @@
         }
     </script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/BlueKey.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="form1" runat="server">     
+<body class="body">
+    <form id="form1" runat="server" data-toggle="validator">
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -62,30 +63,38 @@
             </div>
             <br />
             <br />
+            <br />
             <div class="panel panel-default">
-                <div class="panel-body">
-
+                <div class="container body-content">
+                    <div class="page-header">
+                        <h1><small>Satisfacción del visitante</small></h1>
+                    </div>
                     <asp:Repeater ID="RprEncuesta" runat="server">
                         <HeaderTemplate>
-                            <table>
-                                <%--<%#encuestaHeader()%>--%>
+                            
+                                <table>
+                                    <%--<%#encuestaHeader()%>--%>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <%#encuestaItem(Container.DataItem)%>
                         </ItemTemplate>
                         <FooterTemplate>
                             </table>
+                            
                        
                         </FooterTemplate>
                     </asp:Repeater>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" CssClass="btn btn-default" OnClick="btnSend_Click" />
-                    </div>
+                    <button type="button" class="btn btn-default btn-lm" onclick="btnSend_Click">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbspEnviar / Send
+                    </button>
+
+                    <br />
+                    <br />
                 </div>
 
             </div>
             <label id="lblMensajes" />
-            <div class="panel-footer">Blue Key 2016</div>
+         <div class="panel-footer">Blue Key 2016</div>   
         </div>
     </form>
 </body>

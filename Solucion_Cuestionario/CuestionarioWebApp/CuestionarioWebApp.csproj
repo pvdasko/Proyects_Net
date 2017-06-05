@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\BlueKey.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -71,6 +72,7 @@
     <Content Include="Encuesta.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home.aspx" />
+    <Content Include="img\background.jpg" />
     <Content Include="img\logo_only.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -172,6 +174,7 @@
       <DependentUpon>DBCuestionario.edmx</DependentUpon>
       <LastGenOutput>DBCuestionario.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\Encuesta.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
