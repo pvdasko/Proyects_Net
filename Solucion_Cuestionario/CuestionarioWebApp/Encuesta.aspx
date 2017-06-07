@@ -38,6 +38,8 @@
 </head>
 <body class="body">
     <form id="form1" runat="server" data-toggle="validator">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -67,13 +69,14 @@
             <div class="panel panel-default">
                 <div class="container body-content">
                     <div class="page-header">
-                        <h1><small>Satisfacción del visitante</small></h1>
+                        <h1><small>Satisfacción del visitante
+                            </small></h1>
                     </div>
                     <asp:Repeater ID="RprEncuesta" runat="server">
                         <HeaderTemplate>
-                            
-                                <table>
-                                    <%--<%#encuestaHeader()%>--%>
+
+                            <table>
+                                <%--<%#encuestaHeader()%>--%>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <%#encuestaItem(Container.DataItem)%>
@@ -84,9 +87,7 @@
                        
                         </FooterTemplate>
                     </asp:Repeater>
-                    <button type="button" class="btn btn-default btn-lm" onclick="btnSend_Click">
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbspEnviar / Send
-                    </button>
+                    <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" OnClick="btnSend_Click" />
 
                     <br />
                     <br />
@@ -94,7 +95,30 @@
 
             </div>
             <label id="lblMensajes" />
-         <div class="panel-footer">Blue Key 2016</div>   
+            <div class="panel-footer">Blue Key 2016</div>
+
+            <!-- Bootstrap Modal Dialog -->
+            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
         </div>
     </form>
 </body>

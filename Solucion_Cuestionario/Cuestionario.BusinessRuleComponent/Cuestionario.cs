@@ -26,6 +26,8 @@ namespace Cuestionario.BusinessRuleComponent
         public string Respuesta { get; set; }
         public string Respuesta_Ingles { get; set; }
         public bool Respuesta_Abierta { get; set; }
+        public string Folio { get; set; }
+
 
 
         #endregion
@@ -45,6 +47,25 @@ namespace Cuestionario.BusinessRuleComponent
 
             return dt;
         }
+
+
+        public DataTable getCuestionarioResp()
+        {
+            DataAccess dao = new DataAccess();
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            SqlParameter[] parameters = new SqlParameter[4];
+            parameters[0] = new SqlParameter("@Corporativo", Corporativo);
+            parameters[1] = new SqlParameter("@Hotel", Hotel);
+            parameters[2] = new SqlParameter("@Tipo", Tipo_Cuestionario);
+            parameters[3] = new SqlParameter("@Folio", Folio);
+            ds = dao.ExecuteDataSet("[ConsultaEncuestaResp]", parameters);
+            if (ds.Tables.Count > 0)
+                dt = ds.Tables[0];
+
+            return dt;
+        }
+
 
         public string construyeHeader()
         {
@@ -77,7 +98,8 @@ namespace Cuestionario.BusinessRuleComponent
             drespuesta = info["Respuesta"].ToString();
             dnorespuesta = info["No Respuesta"].ToString();
             drespabierta = bool.Parse(info["Respuesta Abierta"].ToString());
-            maximo = int.Parse(info["Maximo"].ToString()); 
+            maximo = int.Parse(info["Maximo"].ToString());
+
 
             if (dnorespuesta == "1")
             {
@@ -91,14 +113,14 @@ namespace Cuestionario.BusinessRuleComponent
                     for (int i = 1; i <= dcalifmax; i++)
                     {
                         sb.Append("<th align=\"center\">");
-                        sb.Append("&nbsp"+ i.ToString() + "&nbsp"); 
+                        sb.Append("&nbsp" + i.ToString() + "&nbsp");
                         sb.Append("</th>");
                     }
                     sb.Append("<th>");
                     sb.Append("&nbspN/A&nbsp");
                     sb.Append("</th>");
                     sb.Append("</tr>");
-                    
+
                 }
             }
 
@@ -116,12 +138,15 @@ namespace Cuestionario.BusinessRuleComponent
                 case "Calif":
                     sb.Append("<tr><td>");
                     sb.Append("<span class=\"text\">" + drespuesta + "</span></td>");
-                    for (int i = 1; i <= dcalifmax + 1; i++)
+                    for (int i = 1; i <= dcalifmax; i++)
                     {
                         sb.Append("<td align=\"center\">");
                         sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" onchange=\"myFunction(this.value, this.id)\" required/>");
                         sb.Append("</td>");
-                    }                                       
+                    }
+                    sb.Append("<td align=\"center\">");
+                    sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#0 name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" onchange=\"myFunction(this.value, this.id)\" required/>");
+                    sb.Append("</td>");
                     break;
 
                 case "Opcio":
@@ -148,7 +173,7 @@ namespace Cuestionario.BusinessRuleComponent
                     break;
             }
 
-            if (dtipopregunta =="Calif" && int.Parse (dnorespuesta) == maximo )
+            if (dtipopregunta == "Calif" && int.Parse(dnorespuesta) == maximo)
                 sb.Append("</tr></table></div>");
 
             if (int.Parse(dnorespuesta) == maximo)

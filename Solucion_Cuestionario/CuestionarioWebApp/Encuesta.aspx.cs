@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,7 +26,7 @@ namespace CuestionarioWebApp
             {
                 validaHuesped();
                 //validaEncuesta();
-               
+
             }
 
         }
@@ -44,30 +46,36 @@ namespace CuestionarioWebApp
 
             using (CuestionarioEntities context = new CuestionarioEntities())
             {
-                var huesped = (from h in context.O_Huespedes 
-                                where  h.Corporativo == pcorpo && h.Hotel == photel  && h.Id == pfolio                                      
-                                select new 
-                                {
-                                    h
-                                });
+                var huesped = (from h in context.O_Huespedes
+                               where h.Corporativo == pcorpo && h.Hotel == photel && h.Id == pfolio
+                               select new
+                               {
+                                   h
+                               });
 
                 if (huesped.Count() > 0)
                 {
                     cargaEncuesta();
-                    
+
                 }
                 else
                 {
+
+                    lblModalTitle.Text = "Gracias por su visita";
+                    lblModalBody.Text = "Folio inexistente";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                    upModal.Update();
                     terminaSesion();
-                    ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert('Registro np Valido / Invalid registration ')</script>");
-                    ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close(); return false;</script>");
-                   
-                    
+                    //Response.Redirect("www.halowaypoint.com/es-es"); 
+                    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert('Registro np Valido / Invalid registration ')</script>");
+                    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close(); return false;</script>");
+
+
                 }
 
-                
+
             }
-        
+
         }
         private void cargaEncuesta()
         {
@@ -76,7 +84,7 @@ namespace CuestionarioWebApp
             ptipo = Request.QueryString["tipo"];
             pfolio = Request.QueryString["folio"];
 
-           
+
             this.objCuestionario = new Cuestionario.BusinessRuleComponent.Cuestionario();
             objCuestionario.Corporativo = pcorpo;
             objCuestionario.Hotel = photel;
@@ -99,12 +107,182 @@ namespace CuestionarioWebApp
             return this.objCuestionario.construyeItem(datos);
         }
 
+       
+
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert(\"Enviado / Send\")</script>");
-            //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close();</script>");
-            //enviaCorreo();
+            //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert(\"Enviado / Send\")</script>");
+            //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close();</script>");
+            
+            string body;
+            body = construyeCuerpo();
+            enviaCorreo(body);
             terminaSesion();
+        }
+
+
+        private string construyeCuerpo()
+        {
+            DataTable dtable = new DataTable();
+            Cuestionario.BusinessRuleComponent.Cuestionario objCuestionarioResp = new Cuestionario.BusinessRuleComponent.Cuestionario();
+
+            objCuestionarioResp.Corporativo = int.Parse(HttpContext.Current.Session["scorpo"].ToString());
+            objCuestionarioResp.Hotel = HttpContext.Current.Session["shotel"].ToString();
+            objCuestionarioResp.Tipo_Cuestionario = HttpContext.Current.Session["stipo"].ToString();
+            objCuestionarioResp.Folio = HttpContext.Current.Session["sfolio"].ToString();
+
+            dtable = objCuestionarioResp.getCuestionarioResp();
+
+            StringBuilder sb = new StringBuilder();
+
+            string dnopregunta;
+            string dtipopregunta;
+            string dpregunta;
+            int dcalifmax;
+            string drespuesta;
+            string dnorespuesta;
+            bool drespabierta;
+            int maximo;
+            string dnorespuestaHuesped;
+            string dtexto;
+            string dcalificacion;
+
+
+            foreach (DataRow info in dtable.Rows)
+            {
+
+                dnopregunta = info["No Pregunta"].ToString();
+                dtipopregunta = info["Tipo Pregunta"].ToString();
+                dpregunta = info["Pregunta"].ToString();
+                dcalifmax = int.Parse(info["Calificacion Maxima"].ToString());
+                drespuesta = info["Respuesta"].ToString();
+                dnorespuesta = info["No Respuesta"].ToString();
+                drespabierta = bool.Parse(info["Respuesta Abierta"].ToString());
+                maximo = int.Parse(info["Maximo"].ToString());
+                dnorespuestaHuesped = info["RespuestaHuesped"].ToString();
+                dtexto = info["Texto"].ToString();
+                dcalificacion = info["Calificacion"].ToString();
+
+                if (dnopregunta == "1")
+                    sb.Append("<table>");
+
+
+                if (dnorespuesta == "1")
+                {
+                    sb.Append("<tr><td><span class=\"text-danger\"><strong >" + dpregunta + "</strong></span></td></tr>");
+                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    if (dtipopregunta == "Calif")
+                    {
+                        sb.Append("<tr><td>");
+                        sb.Append(" <div class=\"table table-condensed\"><table class=\"table\"><tr><th>&nbsp</th>");
+                        for (int i = 1; i <= dcalifmax; i++)
+                        {
+                            sb.Append("<th align=\"center\">");
+                            sb.Append("&nbsp" + i.ToString() + "&nbsp");
+                            sb.Append("</th>");
+                        }
+                        sb.Append("<th>");
+                        sb.Append("&nbspN/A&nbsp");
+                        sb.Append("</th>");
+                        sb.Append("</tr>");
+
+                    }
+                }
+
+
+
+                switch (dtipopregunta)
+                {
+
+                    case "Abier":
+                        sb.Append("<tr>");
+                        sb.Append("<td><span class=\"text\">" + dtexto + "</span></td>");
+                        sb.Append("</tr>");
+                        sb.Append("<tr><td>&nbsp</td></tr> ");
+                        break;
+
+                    case "Calif":
+                        sb.Append("<tr><td>");
+                        sb.Append("<span class=\"text\">" + drespuesta + "</span></td>");
+                        for (int i = 1; i <= dcalifmax + 1; i++)
+                        {
+                            if (int.Parse(dcalificacion) == i || dcalificacion == "0")
+                            {
+                                sb.Append("<td align=\"center\">");
+                                sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" checked />");
+                                sb.Append("</td>");
+                            }
+                            else
+                            {
+                                sb.Append("<td align=\"center\">");
+                                sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" />");
+                                sb.Append("</td>");
+                            }
+                        }
+
+                        break;
+
+                    case "Opcio":
+                        sb.Append("<tr>");
+                        if (!drespabierta)
+                        {
+                            if (dnorespuesta == dnorespuestaHuesped )
+                            {
+                                sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" checked/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+                            else
+                            {
+                                sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" />&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+                        }
+                        else
+                        {
+                            if (dnorespuesta == dnorespuestaHuesped)
+                            {
+                                sb.Append("<td><span class=\"text\">" + drespuesta + " : " + dtexto + "</span></td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+                            else
+                            {
+                                sb.Append("<td>>&nbsp</td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+
+                        }
+                        sb.Append("</tr>");
+                        break;
+
+                    case "Selec":
+                        if (dnorespuesta == dnorespuestaHuesped)
+                        {
+                            sb.Append("<tr>");
+                            sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" checked />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
+                            sb.Append("</tr>");
+                            sb.Append("<tr><td>&nbsp</td></tr> ");
+                        }
+                        else
+                        {
+                            sb.Append("<tr>");
+                            sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
+                            sb.Append("</tr>");
+                            sb.Append("<tr><td>&nbsp</td></tr> ");
+                        }
+                        break;
+                }
+
+                if (dtipopregunta == "Calif" && int.Parse(dnorespuesta) == maximo)
+                    sb.Append("</tr></table></div>");
+
+                if (int.Parse(dnorespuesta) == maximo)
+                    sb.Append("<tr><td>&nbsp</td></tr> ");
+
+            }
+
+            sb.Append("</table> ");
+            return sb.ToString();
+
         }
 
         private void terminaSesion()
@@ -114,14 +292,14 @@ namespace CuestionarioWebApp
             Session.Remove("stipo");
             Session.Remove("sfolio");
         }
-        private void enviaCorreo()
+        private void enviaCorreo(string pbody)
         {
             Mail correo = new Mail();
             correo.SMTP = "smtp.gmail.com";
-            correo.MailFrom = "mauricio.miranda@bluekey.com.mx";
+            correo.MailFrom = "pvdasko@gmail.com";
             correo.MailTo = "noe_rom@outlook.com";
             correo.IsHTML = true;
-            correo.sendMail("mensaje de prueba", "este es el cuerpo del mensaje");
+            correo.sendMail("mensaje de prueba", pbody);
 
         }
 
@@ -170,7 +348,7 @@ namespace CuestionarioWebApp
                     context.O_Respuestas_Cuestionario_Huespedes.Remove(respDel);
                     context.SaveChanges();
                 }
-                else if (tp == "Selec" && respuesta.Count > 0)
+                else if (tp != "Opcio" && respuesta.Count > 0)
                 {
                     O_Respuestas_Cuestionario_Huespedes respDel = context.O_Respuestas_Cuestionario_Huespedes.First(a =>
                                           a.Corporativo == pcorpo
@@ -219,6 +397,14 @@ namespace CuestionarioWebApp
             }
 
         }
+
+      
+
+       
+
+
+
+
 
     }
 }
