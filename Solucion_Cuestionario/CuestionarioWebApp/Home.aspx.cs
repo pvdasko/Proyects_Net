@@ -136,8 +136,8 @@ namespace CuestionarioWebApp
         protected void btnMail_Click(object sender, EventArgs e)
         {
             Mail correo = new Mail();
-            correo.SMTP = "smtp.gmail.com"; //"mail.bluekey.com.mx";
-            correo.MailFrom = "pvdasko@gmail.com";               //"mauricio.miranda@bluekey.com.mx";
+            correo.SMTP = "mail.bluekey.com.mx";
+            correo.MailFrom = "mauricio.miranda@bluekey.com.mx";
             correo.MailTo = "noe_rom@outlook.com";
             correo.IsHTML = true;
             correo.sendMail("mensaje de prueba", "este es el cuerpo del mensaje");

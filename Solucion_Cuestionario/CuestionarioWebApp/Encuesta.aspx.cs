@@ -25,7 +25,7 @@ namespace CuestionarioWebApp
             if (!IsPostBack)
             {
                 validaHuesped();
-                //validaEncuesta();
+
 
             }
 
@@ -55,8 +55,14 @@ namespace CuestionarioWebApp
 
                 if (huesped.Count() > 0)
                 {
-                    cargaEncuesta();
-
+                    if (!validaEncuesta())
+                    {
+                        cargaEncuesta();
+                    }
+                    else
+                    {
+                        terminaSesion();
+                    }
                 }
                 else
                 {
@@ -65,7 +71,6 @@ namespace CuestionarioWebApp
                     lblModalBody.Text = "Folio inexistente";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
                     upModal.Update();
-                    terminaSesion();
                     //Response.Redirect("www.halowaypoint.com/es-es"); 
                     //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert('Registro np Valido / Invalid registration ')</script>");
                     //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close(); return false;</script>");
@@ -77,6 +82,50 @@ namespace CuestionarioWebApp
             }
 
         }
+
+        private bool validaEncuesta()
+        {
+
+            bool valida = true;
+
+            pcorpo = int.Parse(Request.QueryString["corpo"]);
+            photel = Request.QueryString["hotel"];
+            ptipo = Request.QueryString["tipo"];
+            pfolio = Request.QueryString["folio"];
+
+            using (CuestionarioEntities context = new CuestionarioEntities())
+            {
+                var cuestionario = (from c in context.O_Respuestas_Cuestionario_Huespedes
+                                    where c.Corporativo == pcorpo && c.Hotel == photel && c.Tipo_Cuestionario == ptipo && c.Id == pfolio
+                                    select new
+                                    {
+                                        c
+                                    });
+
+                if (cuestionario.Count() == 0)
+                {
+
+                    valida = false;
+
+                }
+                else
+                {
+                    lblModalTitle.Text = "Gracias por su visita";
+                    lblModalBody.Text = "Folio ya enviado";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                    upModal.Update();
+                    valida = true;
+
+                }
+
+
+
+            }
+
+            return valida;
+
+        }
+
         private void cargaEncuesta()
         {
             pcorpo = int.Parse(Request.QueryString["corpo"]);
@@ -99,7 +148,29 @@ namespace CuestionarioWebApp
 
         protected string encuestaHeader()
         {
-            return this.objCuestionario.construyeHeader();
+            pcorpo = int.Parse(Request.QueryString["corpo"]);
+            photel = Request.QueryString["hotel"];
+            ptipo = Request.QueryString["tipo"];
+            string ptxt ;
+            string ptxting;
+
+            using (CuestionarioEntities context = new CuestionarioEntities())
+            {
+               
+                var textSupIng = (from c in context.S_Configuracion_Cuestionario 
+                                    where c.Corporativo == pcorpo && c.Hotel == photel && c.Tipo_Cuestionario == ptipo 
+                                    select new
+                                    {                                       
+                                        c
+                                        
+                                    }).SingleOrDefault ();
+
+                ptxt =  textSupIng.c.Texto_Superior ;
+                ptxting = textSupIng.c.Texto_Superior_Ingles ;
+
+                
+            }
+            return this.objCuestionario.construyeHeader(ptxt, ptxting );
         }
 
         protected string encuestaItem(object datos)
@@ -107,17 +178,23 @@ namespace CuestionarioWebApp
             return this.objCuestionario.construyeItem(datos);
         }
 
-       
+
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
             //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert(\"Enviado / Send\")</script>");
             //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close();</script>");
-            
+
             string body;
             body = construyeCuerpo();
             enviaCorreo(body);
+            
+            lblModalTitle.Text = "Gracias por su visita";
+            lblModalBody.Text = "Sus respuestas fueron enviadas";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
             terminaSesion();
+            
         }
 
 
@@ -146,7 +223,29 @@ namespace CuestionarioWebApp
             string dnorespuestaHuesped;
             string dtexto;
             string dcalificacion;
+            string ptxt;
+            string ptxting;
 
+            using (CuestionarioEntities context = new CuestionarioEntities())
+            {
+
+                var textSupIng = (from c in context.S_Configuracion_Cuestionario
+                                  where c.Corporativo == objCuestionarioResp.Corporativo && c.Hotel == objCuestionarioResp.Hotel && c.Tipo_Cuestionario == objCuestionarioResp.Tipo_Cuestionario
+                                  select new
+                                  {
+                                      c
+
+                                  }).SingleOrDefault();
+
+                ptxt = textSupIng.c.Texto_Superior;
+                ptxting = textSupIng.c.Texto_Superior_Ingles;
+
+
+            }
+
+            sb.Append("<h3 align=\"left\">Satisfacción del visitante / Satisfaction of the visitor</h3>");
+            sb.Append("</br>");
+            sb.Append("<h4 align=\"justify\">" + ptxt + " / " + ptxting + "</h4>");
 
             foreach (DataRow info in dtable.Rows)
             {
@@ -226,7 +325,7 @@ namespace CuestionarioWebApp
                         sb.Append("<tr>");
                         if (!drespabierta)
                         {
-                            if (dnorespuesta == dnorespuestaHuesped )
+                            if (dnorespuesta == dnorespuestaHuesped)
                             {
                                 sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" checked/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
                                 sb.Append("<tr><td>&nbsp</td></tr> ");
@@ -246,7 +345,7 @@ namespace CuestionarioWebApp
                             }
                             else
                             {
-                                sb.Append("<td>>&nbsp</td>");
+                                sb.Append("<td>&nbsp</td>");
                                 sb.Append("<tr><td>&nbsp</td></tr> ");
                             }
 
@@ -291,16 +390,56 @@ namespace CuestionarioWebApp
             Session.Remove("shotel");
             Session.Remove("stipo");
             Session.Remove("sfolio");
+            string script = "window.close();";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindow", script, true);
+
         }
         private void enviaCorreo(string pbody)
         {
             Mail correo = new Mail();
-            correo.SMTP = "smtp.gmail.com";
-            correo.MailFrom = "pvdasko@gmail.com";
-            correo.MailTo = "noe_rom@outlook.com";
-            correo.IsHTML = true;
-            correo.sendMail("mensaje de prueba", pbody);
+            StringBuilder sb = new StringBuilder();
 
+            int pcorpo = int.Parse(HttpContext.Current.Session["scorpo"].ToString());
+            string photel = HttpContext.Current.Session["shotel"].ToString();
+            string ptipo = HttpContext.Current.Session["stipo"].ToString();
+
+            using (CuestionarioEntities context = new CuestionarioEntities())
+            {
+
+                var config = (from c in context.S_Configuracion_Cuestionario
+                                  where c.Corporativo == pcorpo && c.Hotel == photel && c.Tipo_Cuestionario == ptipo
+                                  select new
+                                  {
+                                      c
+
+                                  }).SingleOrDefault();
+
+                var mails = (from m in context.S_Correos_Cuestionario
+                             where m.Corporativo == pcorpo && m.Hotel == photel && m.Tipo_Cuestionario == ptipo
+                             select new
+                             {
+                                 m
+
+                             }).ToList ();
+
+                foreach (var m in mails  )
+                {
+                    sb.Append(m.m.Email);
+                    sb.Append(";");
+
+                }
+
+                correo.SMTP = config.c.Servidor_SMTP;
+                correo.MailFrom = config.c.Email_Saliente;
+                correo.Port = int.Parse (config.c.Puerto_SMTP.ToString ());   
+                correo.IsHTML = true;
+
+              
+                 
+                
+            }
+            correo.MailTo = sb.ToString().TrimEnd (';');
+            correo.sendMail("Encuesta de Satisfacción", pbody);
         }
 
 
@@ -398,9 +537,9 @@ namespace CuestionarioWebApp
 
         }
 
-      
 
-       
+
+
 
 
 

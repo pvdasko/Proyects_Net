@@ -16,7 +16,7 @@
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -29,7 +29,17 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="Home.aspx">Home</a></li>
-                            <li><a href="#">Admin</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                      <li><a href="Configuracion/Default.aspx">Configuración</a></li>
+                                      <li><a href="Correos/Default.aspx">Correos</a></li>
+                                    <li><a href="Tipos/Default.aspx">Tipos Cuestionario</a></li>
+                                      <li><a href="Preguntas/Default.aspx">Preguntas</a></li>
+                                </ul>
+                            </li>
+                          
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </div>
@@ -42,31 +52,33 @@
 
             <div class="panel panel-default">
                 <div class="container body-content">
-                    Test web app
+                    <h2>Test web app</h2>
                     <br />
-                    <asp:Label ID="lblCorpo" runat="server" Text="Corporativo" CssClass="label label-primary " Width="80px"></asp:Label>
-                    <asp:DropDownList ID="ddlCorpo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlCorpo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
+                    <asp:Label ID="lblCorpo" runat="server" Width="120px"><h5>Corporativo</h5></asp:Label>
+                    <asp:DropDownList ID="ddlCorpo" runat="server" AutoPostBack="True" CssClass="dropdown-men" OnSelectedIndexChanged="ddlCorpo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
-                    <asp:Label ID="lblHotel" runat="server" Text="Hotel" CssClass="label label-primary" Width="80px"></asp:Label>
-                    <asp:DropDownList ID="ddlHotel" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlHotel_SelectedIndexChanged" Width="150px"></asp:DropDownList>
+                    <asp:Label ID="lblHotel" runat="server" Text="Hotel" Width="120px"><h5>Hotel</h5></asp:Label>
+                    <asp:DropDownList ID="ddlHotel" runat="server" AutoPostBack="True" CssClass="dropdown-men" OnSelectedIndexChanged="ddlHotel_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
-                    <asp:Label ID="lbltipo" runat="server" Text="Cuestionario" CssClass="label label-primary" Width="80px"></asp:Label>
-                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="btn btn-default btn-xs dropdown-toggle" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
+                    <asp:Label ID="lbltipo" runat="server" Text="Cuestionario" Width="120px"><h5>Cuestionario</h5></asp:Label>
+                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="dropdown-men" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged" Width="150px"></asp:DropDownList>
                     <br />
-                    <asp:Label ID="lblfolio" runat="server" Text="Folio" CssClass="label label-primary" Width="80px"></asp:Label>
+                    <asp:Label ID="lblfolio" runat="server" Text="Folio" Width="120px"><h5>Folio</h5></asp:Label>
                     <span>
-                        <input type="text" placeholder="Folio" aria-describedby="sizing-addon3" id="txtFolio" runat ="server" /></span>
+                        <input type="text" placeholder="Folio" aria-describedby="sizing-addon3" id="txtFolio" runat="server" /></span>
                     <br />
                     <br />
-                    <asp:Button ID="btnTest" Text="Test Page" runat="server" OnClick="btnTest_Click1" CssClass="btn btn-default btn-lm" Width="100px"/>
+                    <asp:Button ID="btnTest" Text="Test Page" runat="server" OnClick="btnTest_Click1" CssClass="btn btn-default btn-lm" Width="100px" />
                     <br />
                     <br />
-                    <asp:Button ID="btnMail" runat="server" Text="Enviar" OnClick="btnMail_Click" CssClass="btn btn-default btn-lm" Width="100px" />
-                   
+                    <asp:Button ID="btnMail" runat="server" Text="Enviar" OnClick="btnMail_Click" CssClass="btn btn-default btn-lm" Width="100px" Visible="False" />
+
                 </div>
             </div>
 
-            <div class="panel-footer">Blue Key 2016</div>
+            <div class="panel-footer">
+                <p>&copy; <%: DateTime.Now.Year %> - BlueKey</p>
+            </div>
         </div>
     </form>
 </body>

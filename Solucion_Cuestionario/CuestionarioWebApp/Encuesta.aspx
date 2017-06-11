@@ -35,6 +35,12 @@
     </script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/BlueKey.css" rel="stylesheet" />
+    <link href="css/Encuesta.css" rel="stylesheet" />
+    <style>
+        a:hover {
+            background-color: lightgray ;
+        }
+    </style>
 </head>
 <body class="body">
     <form id="form1" runat="server" data-toggle="validator">
@@ -70,13 +76,13 @@
                 <div class="container body-content">
                     <div class="page-header">
                         <h1><small>Satisfacción del visitante
-                            </small></h1>
+                        </small></h1>
                     </div>
                     <asp:Repeater ID="RprEncuesta" runat="server">
                         <HeaderTemplate>
 
                             <table>
-                                <%--<%#encuestaHeader()%>--%>
+                                <%#encuestaHeader()%>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <%#encuestaItem(Container.DataItem)%>
@@ -95,7 +101,9 @@
 
             </div>
             <label id="lblMensajes" />
-            <div class="panel-footer">Blue Key 2016</div>
+            <div class="panel-footer">
+                <p>&copy; <%: DateTime.Now.Year %> - BlueKey</p>
+            </div>
 
             <!-- Bootstrap Modal Dialog -->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

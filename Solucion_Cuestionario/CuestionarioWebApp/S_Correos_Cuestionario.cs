@@ -11,12 +11,15 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    
     
     public partial class S_Correos_Cuestionario
     {
         public long Corporativo { get; set; }
         public string Hotel { get; set; }
         public string Tipo_Cuestionario { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public string Descripcion { get; set; }
     
