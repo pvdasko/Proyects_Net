@@ -15,6 +15,7 @@ namespace CuestionarioWebApp.Preguntas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         // Model binding method to get List of S_Corporativos entries

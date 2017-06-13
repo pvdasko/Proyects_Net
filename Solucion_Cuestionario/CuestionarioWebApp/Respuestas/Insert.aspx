@@ -7,6 +7,23 @@
 <head runat="server">
     <title></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .texto250 .DDTextBox {
+            width: 250px;
+        }
+
+        .texto300 .DDTextBox {
+            width: 300px;
+        }
+
+        .texto400 .DDTextBox {
+            width: 400px;
+        }
+
+        .texto500 .DDTextBox {
+            width: 4500px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -65,7 +82,7 @@
                                 <strong>Respuesta</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Respuesta" ID="Respuesta" Mode="Insert" />
+                                <asp:DynamicControl runat="server" DataField="Respuesta" ID="Respuesta" Mode="Insert" CssClass="texto400"/>
                             </div>
                         </div>
                         <div class="row">
@@ -73,7 +90,7 @@
                                 <strong>Respuesta Ingles</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Respuesta_Ingles" ID="Respuesta_Ingles" Mode="Insert" />
+                                <asp:DynamicControl runat="server" DataField="Respuesta_Ingles" ID="Respuesta_Ingles" Mode="Insert" CssClass="texto400"/>
                             </div>
                         </div>
                         <div class="row">

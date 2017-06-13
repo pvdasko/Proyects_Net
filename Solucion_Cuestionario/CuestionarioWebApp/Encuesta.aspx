@@ -56,7 +56,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="Home.aspx"><span>
+                        <a class="navbar-brand" href="#"><span>
                             <img alt="Brand" src="img/logo_only.png" height="30" /></span> Encuesta</a>
                     </div>
 

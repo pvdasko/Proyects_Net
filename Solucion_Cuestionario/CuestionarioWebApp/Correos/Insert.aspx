@@ -7,6 +7,11 @@
 <head runat="server">
     <title></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .texto250 .DDTextBox {
+            width: 250px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -25,7 +30,7 @@
                                 <strong>Corporativo</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Corporativo" ID="Corporativo" Mode ="Insert"  />
+                                <asp:DynamicControl runat="server" DataField="Corporativo" ID="Corporativo" Mode="Insert" />
                             </div>
                         </div>
                         <div class="row">
@@ -33,7 +38,7 @@
                                 <strong>Hotel</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Hotel" ID="Hotel" Mode ="Insert" />
+                                <asp:DynamicControl runat="server" DataField="Hotel" ID="Hotel" Mode="Insert" />
                             </div>
                         </div>
                         <div class="row">
@@ -41,7 +46,7 @@
                                 <strong>Tipo Cuestionario</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Tipo_Cuestionario" ID="Tipo_Cuestionario"  Mode ="Insert" />
+                                <asp:DynamicControl runat="server" DataField="Tipo_Cuestionario" ID="Tipo_Cuestionario" Mode="Insert" />
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +54,7 @@
                                 <strong>Email</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode ="Insert"  For="email"/>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="Insert" For="email" CssClass="texto250"/>
                             </div>
                         </div>
                         <div class="row">
@@ -57,7 +62,7 @@
                                 <strong>Descripción</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Descripcion" ID="Descripcion" Mode ="Insert"  />
+                                <asp:DynamicControl runat="server" DataField="Descripcion" ID="Descripcion" Mode="Insert" CssClass="texto250"/>
                             </div>
                         </div>
                         <div class="form-group">

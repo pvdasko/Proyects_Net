@@ -70,7 +70,7 @@ namespace Cuestionario.BusinessRuleComponent
         public string construyeHeader(string pTextoSuperior, string pTextoSuperiorIng)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<tr><td>"+ pTextoSuperior  + " / "+ pTextoSuperiorIng + "</td></tr>");
+            sb.Append("<tr><td style = \"text-align: justify;\">" + pTextoSuperior + " / " + pTextoSuperiorIng + "</td></tr>");
             return sb.ToString();
         }
 
@@ -112,11 +112,11 @@ namespace Cuestionario.BusinessRuleComponent
                     sb.Append(" <div class=\"table-responsive\"><table class=\"table table-condensed\"><tr><th>&nbsp</th>");
                     for (int i = 1; i <= dcalifmax; i++)
                     {
-                        sb.Append("<th align=\"center\">");
+                        sb.Append("<th style = \"text-align: center;\">");
                         sb.Append("<h5>&nbsp" + i.ToString() + "&nbsp</h5>");
                         sb.Append("</th>");
                     }
-                    sb.Append("<th align=\"center\">");
+                    sb.Append("<th style = \"text-align: center;\">");
                     sb.Append("<h5>&nbspN/A&nbsp</h5>");
                     sb.Append("</th>");
                     sb.Append("</tr>");
@@ -154,20 +154,29 @@ namespace Cuestionario.BusinessRuleComponent
                     if (!drespabierta)
                     {
                         sb.Append("<td><h4><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" class=\"selector-box\" onchange=\"myFunction(this.value, this.id)\" required/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></h4></td>");
-                        sb.Append("<tr><td>&nbsp</td></tr> ");
+
                     }
                     else
                     {
-                        sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, ths.id)\" onkeypress=\"validar()\" class=\"form-control input-lg\" placeholder=\"" + drespuesta + "\" /></td>");
-                        sb.Append("<tr><td>&nbsp</td></tr> ");
+                        sb.Append("<td><h4><input name=\"Rad" + dnopregunta + "\" type=\"radio\" class=\"selector-box\" required/><span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" placeholder=\"" + drespuesta + "\" style=\"width: 200px;\" /></span></h4></td>");
 
                     }
+                    sb.Append("<tr><td>&nbsp</td></tr> ");
                     sb.Append("</tr>");
                     break;
 
                 case "Selec":
                     sb.Append("<tr>");
-                    sb.Append("<td><h4><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\"  class=\"selector-box\" />&nbsp<span class=\"text\">" + drespuesta + "</span></h4></td>");
+                    if (!drespabierta)
+                    {
+                        sb.Append("<td><h4><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + "  type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\"  class=\"selector-box\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></h4></td>");
+
+                    }
+                    else
+                    {
+                        sb.Append("<td><h4><input type=\"checkbox\"  class=\"selector-box\" /><span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" placeholder=\"" + drespuesta + "\" style=\"width: 200px;\"/></span></td>");
+
+                    }
                     sb.Append("</tr>");
                     sb.Append("<tr><td>&nbsp</td></tr> ");
                     break;

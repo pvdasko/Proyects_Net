@@ -354,19 +354,34 @@ namespace CuestionarioWebApp
                         break;
 
                     case "Selec":
-                        if (dnorespuesta == dnorespuestaHuesped)
+                        sb.Append("<tr>");
+                        if (!drespabierta)
                         {
-                            sb.Append("<tr>");
-                            sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" checked />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
-                            sb.Append("</tr>");
-                            sb.Append("<tr><td>&nbsp</td></tr> ");
+                            if (dnorespuesta == dnorespuestaHuesped)
+                            {
+                                sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" checked />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
+                                sb.Append("</tr>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+                            else
+                            {
+                                sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
+                                sb.Append("</tr>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
                         }
                         else
                         {
-                            sb.Append("<tr>");
-                            sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
-                            sb.Append("</tr>");
-                            sb.Append("<tr><td>&nbsp</td></tr> ");
+                            if (dnorespuesta == dnorespuestaHuesped)
+                            {
+                                sb.Append("<td><span class=\"text\">" + drespuesta + " : " + dtexto + "</span></td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
+                            else
+                            {
+                                sb.Append("<td>&nbsp</td>");
+                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                            }
                         }
                         break;
                 }

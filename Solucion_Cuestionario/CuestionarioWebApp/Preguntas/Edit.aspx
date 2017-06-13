@@ -6,6 +6,23 @@
 <head runat="server">
     <title></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .texto250 .DDTextBox {
+            width: 250px;
+        }
+
+        .texto300 .DDTextBox {
+            width: 300px;
+        }
+
+        .texto400 .DDTextBox {
+            width: 400px;
+        }
+
+        .texto500 .DDTextBox {
+            width: 4500px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -54,7 +71,7 @@
                                 <asp:DynamicControl runat="server" DataField="No_Pregunta" ID="No_Pregunta" Mode="ReadOnly" />
                             </div>
                         </div>
-                         <div class="row">
+                        <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Tipo Pregunta</strong>
                             </div>
@@ -67,7 +84,7 @@
                                 <strong>Pregunta</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Pregunta" ID="Pregunta" Mode="Edit" />
+                                <asp:DynamicControl runat="server" DataField="Pregunta" ID="Pregunta" Mode="Edit"  CssClass="texto400"/>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +92,7 @@
                                 <strong>Pregunta Ingles</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Pregunta_Ingles" ID="Pregunta_Ingles" Mode="Edit" />
+                                <asp:DynamicControl runat="server" DataField="Pregunta_Ingles" ID="Pregunta_Ingles" Mode="Edit" CssClass="texto400" />
                             </div>
                         </div>
                         <div class="row">
@@ -87,11 +104,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-							<asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-primary" />
-							<asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
-						</div>
-					</div>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-primary" />
+                                <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
+                            </div>
+                        </div>
                     </fieldset>
                 </EditItemTemplate>
             </asp:FormView>
