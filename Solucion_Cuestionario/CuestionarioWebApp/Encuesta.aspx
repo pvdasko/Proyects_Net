@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -24,6 +25,24 @@
             });
         }
 
+        function soloLetras(e) {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                return false;
+            }
+        }
         function onMetodoOk(resultado) {
             // Acciones para realizar con resultado
 
@@ -33,20 +52,153 @@
             alert(error.get_message());
         }
     </script>
+    <script src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/BlueKey.css" rel="stylesheet" />
-    <link href="css/Encuesta.css" rel="stylesheet" />
+    <%--<link href="css/Encuesta.css" rel="stylesheet" />--%>
     <style>
         a:hover {
-            background-color: lightgray ;
+            background-color: lightgray;
+        }
+
+        .contenedorEncuesta {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        .main {
+            width: 100%;
+            padding: 20px;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        span.hidden-label {
+            visibility: hidden;
+        }
+
+        span.visible-label {
+            visibility: visible;
+        }
+
+        row.visible-sep {
+            display: block;
+        }
+
+        .rach {
+            width: 1.8em;
+            height: 1.8em;
+        }
+
+        @media screen and (max-width: 767px) {
+            .contenedorEncuesta {
+                width: 100%;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+
+            .main {
+                width: 100%;
+                padding: 10px;
+                float: left;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-size: 1.2em;
+                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+
+            hr.hidden {
+                visibility: hidden;
+            }
+
+            span.hidden-label {
+                visibility: visible;
+            }
+
+            span.visible-label {
+                visibility: hidden;
+            }
+
+            row.visible-sep {
+                display: none;
+            }
+
+            .rach {
+                width: 1.5em;
+                height: 1.5em;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .contenedorEncuesta {
+                width: 100%;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+
+            .main {
+                width: 100%;
+                padding: 5px;
+                float: left;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-size: 1em;
+                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+
+            hr.hidden {
+                visibility: hidden;
+            }
+
+            span.hidden-label {
+                visibility: visible;
+            }
+
+            span.visible-label {
+                visibility: hidden;
+            }
+
+            row.visible-sep {
+                display: none;
+            }
+
+            .rach {
+                width: 1.4em;
+                height: 1.4em;
+            }
+        }
+
+        .text-pregunta {
+            color: #aa6708;
+        }
+
+        .text-respuesta {
+            color: #29293d;
+        }
+
+        .text-titulo {
+            color: #1b809e;
+        }
+
+        .text-encabezado {
+            color: #a94442;
         }
     </style>
 </head>
-<body class="body">
+<body class="body ">
     <form id="form1" runat="server" data-toggle="validator">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <div>
+        <div class="container-fluid">
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
@@ -72,34 +224,41 @@
             <br />
             <br />
             <br />
-            <div class="panel panel-default">
+            <%--     <div class="panel panel-default">
                 <div class="container body-content">
-                    <div class="page-header">
-                        <h1><small>Satisfacción del visitante
-                        </small></h1>
-                    </div>
-                    <asp:Repeater ID="RprEncuesta" runat="server">
-                        <HeaderTemplate>
-
-                            <table>
-                                <%#encuestaHeader()%>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <%#encuestaItem(Container.DataItem)%>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            </table>
-                            
+                    <div class="page-header">--%>
+            <section class="main">
+                <div>
+                    <div>
+                        <div>
+                            <h1><small class="text-titulo">Satisfacción del visitante
+                            </small></h1>
+                        </div>
+                        <asp:Repeater ID="RprEncuesta" runat="server">
+                            <HeaderTemplate>
+                                <div class="container-fluid">
+                                    <%#encuestaHeader()%>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <%#encuestaItem(Container.DataItem)%>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </div>
                        
-                        </FooterTemplate>
-                    </asp:Repeater>
-                    <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" OnClick="btnSend_Click" />
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <asp:Button ID="btnSend" runat="server" Text="Enviar / Send" OnClick="btnSend_Click" CssClass="btn btn-info" />
 
-                    <br />
-                    <br />
+                        <br />
+                        <br />
+                    </div>
+
                 </div>
+            </section>
 
-            </div>
+
+        </div>
+        <footer>
             <label id="lblMensajes" />
             <div class="panel-footer">
                 <p>&copy; <%: DateTime.Now.Year %> - BlueKey</p>
@@ -127,7 +286,8 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-        </div>
+
+        </footer>
     </form>
 </body>
 </html>

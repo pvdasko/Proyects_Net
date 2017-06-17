@@ -242,7 +242,7 @@ namespace CuestionarioWebApp
 
 
             }
-
+            sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
             sb.Append("<h3 align=\"left\">Satisfacción del visitante / Satisfaction of the visitor</h3>");
             sb.Append("</br>");
             sb.Append("<h4 align=\"justify\">" + ptxt + " / " + ptxting + "</h4>");
@@ -269,19 +269,19 @@ namespace CuestionarioWebApp
                 if (dnorespuesta == "1")
                 {
                     sb.Append("<tr><td><span class=\"text-danger\"><strong >" + dpregunta + "</strong></span></td></tr>");
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    sb.Append("<tr><td></td></tr> ");
                     if (dtipopregunta == "Calif")
                     {
                         sb.Append("<tr><td>");
-                        sb.Append(" <div class=\"table table-condensed\"><table class=\"table\"><tr><th>&nbsp</th>");
+                        sb.Append(" <div class=\"table table-condensed\"><table class=\"table\"><tr><th></th>");
                         for (int i = 1; i <= dcalifmax; i++)
                         {
                             sb.Append("<th align=\"center\">");
-                            sb.Append("&nbsp" + i.ToString() + "&nbsp");
+                            sb.Append( i.ToString());
                             sb.Append("</th>");
                         }
                         sb.Append("<th>");
-                        sb.Append("&nbspN/A&nbsp");
+                        sb.Append("N/A");
                         sb.Append("</th>");
                         sb.Append("</tr>");
 
@@ -297,7 +297,7 @@ namespace CuestionarioWebApp
                         sb.Append("<tr>");
                         sb.Append("<td><span class=\"text\">" + dtexto + "</span></td>");
                         sb.Append("</tr>");
-                        sb.Append("<tr><td>&nbsp</td></tr> ");
+                        sb.Append("<tr><td></td></tr> ");
                         break;
 
                     case "Calif":
@@ -308,13 +308,13 @@ namespace CuestionarioWebApp
                             if (int.Parse(dcalificacion) == i || dcalificacion == "0")
                             {
                                 sb.Append("<td align=\"center\">");
-                                sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" checked />");
+                                sb.Append("<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" checked />");
                                 sb.Append("</td>");
                             }
                             else
                             {
                                 sb.Append("<td align=\"center\">");
-                                sb.Append("&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" />");
+                                sb.Append("<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  aria-label=\"...\" />");
                                 sb.Append("</td>");
                             }
                         }
@@ -328,12 +328,12 @@ namespace CuestionarioWebApp
                             if (dnorespuesta == dnorespuestaHuesped)
                             {
                                 sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" checked/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                             else
                             {
                                 sb.Append("<td><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" />&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                         }
                         else
@@ -341,12 +341,12 @@ namespace CuestionarioWebApp
                             if (dnorespuesta == dnorespuestaHuesped)
                             {
                                 sb.Append("<td><span class=\"text\">" + drespuesta + " : " + dtexto + "</span></td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                             else
                             {
-                                sb.Append("<td>&nbsp</td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<td></td>");
+                                sb.Append("<tr><td></td></tr> ");
                             }
 
                         }
@@ -361,13 +361,13 @@ namespace CuestionarioWebApp
                             {
                                 sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" checked />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
                                 sb.Append("</tr>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                             else
                             {
                                 sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"checkbox\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></td>");
                                 sb.Append("</tr>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                         }
                         else
@@ -375,12 +375,12 @@ namespace CuestionarioWebApp
                             if (dnorespuesta == dnorespuestaHuesped)
                             {
                                 sb.Append("<td><span class=\"text\">" + drespuesta + " : " + dtexto + "</span></td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                             else
                             {
-                                sb.Append("<td>&nbsp</td>");
-                                sb.Append("<tr><td>&nbsp</td></tr> ");
+                                sb.Append("<td>&#160</td>");
+                                sb.Append("<tr><td></td></tr> ");
                             }
                         }
                         break;
@@ -390,11 +390,12 @@ namespace CuestionarioWebApp
                     sb.Append("</tr></table></div>");
 
                 if (int.Parse(dnorespuesta) == maximo)
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    sb.Append("<tr><td></td></tr> ");
 
             }
 
             sb.Append("</table> ");
+            sb.Append("</body></html>");
             return sb.ToString();
 
         }

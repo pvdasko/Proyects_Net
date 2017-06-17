@@ -70,7 +70,8 @@ namespace Cuestionario.BusinessRuleComponent
         public string construyeHeader(string pTextoSuperior, string pTextoSuperiorIng)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<tr><td style = \"text-align: justify;\">" + pTextoSuperior + " / " + pTextoSuperiorIng + "</td></tr>");
+            sb.Append("<div class=\"row\"><span class=\"text-encabezado\" style = \"text-align: justify;\"><strong>" + pTextoSuperior + " / " + pTextoSuperiorIng + "</strong></span></div>");
+            sb.Append("</br> ");
             return sb.ToString();
         }
 
@@ -100,28 +101,25 @@ namespace Cuestionario.BusinessRuleComponent
             drespabierta = bool.Parse(info["Respuesta Abierta"].ToString());
             maximo = int.Parse(info["Maximo"].ToString());
 
-
+            
             if (dnorespuesta == "1")
             {
-                sb.Append("<tr><td><h4><span class=\"text-danger\"><strong >" + dpregunta + "</strong></span></h4></td></tr>");
-                sb.Append("<tr><td>&nbsp</td></tr> ");
+               
+                sb.Append("<div class=\"container-fluid\">");
+                sb.Append("<div class=\"row\"><span class=\"text-pregunta\"><strong >" + dpregunta + "</strong></span></div>");
+                sb.Append("</br> ");
                 if (dtipopregunta == "Calif")
                 {
-                    sb.Append("<tr>");
-                    sb.Append("<td>");
-                    sb.Append(" <div class=\"table-responsive\"><table class=\"table table-condensed\"><tr><th>&nbsp</th>");
+                    sb.Append("<div class=\"row visible-sep\"><div class=\"col-sm-4 \">&nbsp</div>");
                     for (int i = 1; i <= dcalifmax; i++)
                     {
-                        sb.Append("<th style = \"text-align: center;\">");
-                        sb.Append("<h5>&nbsp" + i.ToString() + "&nbsp</h5>");
-                        sb.Append("</th>");
+                        sb.Append("<div class=\"col-sm-1\" style = \"text-align: center;\" ><span class=\"visible-label\">" + i.ToString() + "</span></div>");
+                     
                     }
-                    sb.Append("<th style = \"text-align: center;\">");
-                    sb.Append("<h5>&nbspN/A&nbsp</h5>");
-                    sb.Append("</th>");
-                    sb.Append("</tr>");
-
+                    sb.Append("<div class=\"col-sm-1\" style = \"text-align: center;\" ><span class=\"visible-label\">N/A</span></div><hr></div>");
+                    //sb.Append("<hr> ");
                 }
+              
             }
 
 
@@ -129,65 +127,69 @@ namespace Cuestionario.BusinessRuleComponent
             {
 
                 case "Abier":
-                    sb.Append("<tr>");
-                    sb.Append("<td><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" class=\"form-control input-lg\" aria-label=\"...\" required/>&nbsp<h4><span>" + drespuesta + "</span></h4></td>");
-                    sb.Append("</tr>");
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    sb.Append("<div class=\"row\"><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"return soloLetras(event)\"  required style=\"width: 70%;\"/>&nbsp<h4><span class=\"text-respuesta\" >" + drespuesta + "</span>");
+                    sb.Append("</div>");
+                    sb.Append("</br> ");
                     break;
 
                 case "Calif":
-                    sb.Append("<tr><td>");
-                    sb.Append("<h4><span class=\"text\">" + drespuesta + "</span></h4></td>");
+                    sb.Append("<div class=\"row\">");
+                    sb.Append("<div class=\"col-sm-4\"><span class=\"text-respuesta\">" + drespuesta + "</span></div>");
                     for (int i = 1; i <= dcalifmax; i++)
                     {
-                        sb.Append("<td align=\"center\">");
-                        sb.Append("<h4>&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\" class=\"selector-box\" aria-label=\"...\" onchange=\"myFunction(this.value, this.id)\"  required/></h4>");
-                        sb.Append("</td>");
+                        sb.Append("<div class=\"col-sm-1\" style = \"text-align: center;\" >");
+                        sb.Append("<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#" + i.ToString() + " name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\" class=\"rach\" onchange=\"myFunction(this.value, this.id)\"  required/>");
+                        sb.Append("&nbsp<span class=\"hidden-label\">" + i.ToString() + "</span>");
+                        sb.Append("</div>");
                     }
-                    sb.Append("<td align=\"center\">");
-                    sb.Append("<h4>&nbsp<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#0 name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  class=\"selector-box\" aria-label=\"...\" onchange=\"myFunction(this.value, this.id)\" required/></h4>");
-                    sb.Append("</td>");
+                    sb.Append("<div class=\"col-sm-1\" style = \"text-align: center;\">");
+                    sb.Append("<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + "#0 name=\"Rad" + dnopregunta + dnorespuesta + "\" type=\"radio\"  class=\"rach\" onchange=\"myFunction(this.value, this.id)\" required/>");
+                    sb.Append("&nbsp<span class=\"hidden-label\">N/A</span>");
+                    sb.Append("</div>");                    
+                    sb.Append("</div>");
+                  
                     break;
 
-                case "Opcio":
-                    sb.Append("<tr>");
+                case "Opcio":                    
                     if (!drespabierta)
                     {
-                        sb.Append("<td><h4><input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" class=\"selector-box\" onchange=\"myFunction(this.value, this.id)\" required/>&nbsp<span class=\"text\" aria-label=\"...\" >" + drespuesta + "</span></h4></td>");
+                        sb.Append("<div class=\"row\">");
+                        sb.Append("<input id = " + dtipopregunta + dnopregunta + "_" + dnorespuesta + " name=\"Rad" + dnopregunta + "\" type=\"radio\" onchange=\"myFunction(this.value, this.id)\" class=\"rach\" required/>");
+                        sb.Append("&nbsp<span class=\"text-respuesta\" >" + drespuesta + "</span></div>");
+                     
+                    }
+                    else
+                    {
+                        sb.Append("<div class=\"row\">");
+                        sb.Append("<input name=\"Rad" + dnopregunta + "\" type=\"radio\" class=\"rach\"  required/>");
+                        sb.Append("&nbsp<span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"return soloLetras(event)\" placeholder=\"" + drespuesta + "\" style=\"width: 70%;\" /></span></div>");
+                      
+                    }                   
+                    break;
+
+                case "Selec":                   
+                    if (!drespabierta)
+                    {
+                         sb.Append("<div class=\"row\">");
+                         sb.Append("<input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + "  type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\" class=\"rach\" />");
+                         sb.Append("&nbsp<span class=\"text-respuesta\" >" + drespuesta + "</span></div>");
+                     
 
                     }
                     else
                     {
-                        sb.Append("<td><h4><input name=\"Rad" + dnopregunta + "\" type=\"radio\" class=\"selector-box\" required/><span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" placeholder=\"" + drespuesta + "\" style=\"width: 200px;\" /></span></h4></td>");
-
+                        sb.Append("<div class=\"row\">");
+                        sb.Append("<input type=\"checkbox\" class=\"rach\" />&nbsp<span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"return soloLetras(event)\" placeholder=\"" + drespuesta + "\" style=\"width: 70%;\"/></span></div>");                       
                     }
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
-                    sb.Append("</tr>");
-                    break;
-
-                case "Selec":
-                    sb.Append("<tr>");
-                    if (!drespabierta)
-                    {
-                        sb.Append("<td><h4><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + "  type=\"checkbox\"  onchange=\"myFunction(this.value, this.id)\"  class=\"selector-box\" />&nbsp<span class=\"text\" >" + drespuesta + "</span></h4></td>");
-
-                    }
-                    else
-                    {
-                        sb.Append("<td><h4><input type=\"checkbox\"  class=\"selector-box\" /><span><input id=" + dtipopregunta + dnopregunta + "_" + dnorespuesta + " type=\"text\" onblur=\"myFunction(this.value, this.id)\" onkeypress=\"validar()\" placeholder=\"" + drespuesta + "\" style=\"width: 200px;\"/></span></td>");
-
-                    }
-                    sb.Append("</tr>");
-                    sb.Append("<tr><td>&nbsp</td></tr> ");
+                    
                     break;
             }
 
-            if (dtipopregunta == "Calif" && int.Parse(dnorespuesta) == maximo)
-                sb.Append("</tr></table></div>");
+            //if (dtipopregunta == "Calif" && int.Parse(dnorespuesta) == maximo)
+            //    sb.Append("<tbody/></tr></table>");
 
             if (int.Parse(dnorespuesta) == maximo)
-                sb.Append("<tr><td>&nbsp</td></tr> ");
-
+                sb.Append("</div></br>");
             return sb.ToString();
 
 

@@ -68,7 +68,7 @@
                         <input type="text" placeholder="Folio" aria-describedby="sizing-addon3" id="txtFolio" runat="server" /></span>
                     <br />
                     <br />
-                    <asp:Button ID="btnTest" Text="Test Page" runat="server" OnClick="btnTest_Click1" CssClass="btn btn-default btn-lm" Width="100px" />
+                    <asp:Button ID="btnTest" Text="Test Page" runat="server" OnClick="btnTest_Click1" CssClass="btn btn-info" Width="100px" />
                     <br />
                     <br />
                     <asp:Button ID="btnMail" runat="server" Text="Enviar" OnClick="btnMail_Click" CssClass="btn btn-default btn-lm" Width="100px" Visible="False" />
