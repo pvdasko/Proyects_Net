@@ -26,8 +26,9 @@ namespace CuestionarioWebApp
             {
                 validaHuesped();
 
-
             }
+
+            Page.RegisterRedirectOnSessionEndScript();            
 
         }
 
@@ -46,6 +47,10 @@ namespace CuestionarioWebApp
 
             using (CuestionarioEntities context = new CuestionarioEntities())
             {
+
+                var pag = context.S_Configuracion_Cuestionario.Where(m => m.Corporativo == pcorpo && m.Hotel == photel && m.Tipo_Cuestionario == ptipo).FirstOrDefault();
+                Session["sweb"] = pag.Pagina_Reinicio.ToString();
+  
                 var huesped = (from h in context.O_Huespedes
                                where h.Corporativo == pcorpo && h.Hotel == photel && h.Id == pfolio
                                select new
@@ -59,22 +64,12 @@ namespace CuestionarioWebApp
                     {
                         cargaEncuesta();
                     }
-                    else
-                    {
-                        terminaSesion();
-                    }
+                    
                 }
                 else
                 {
 
-                    lblModalTitle.Text = "Gracias por su visita";
-                    lblModalBody.Text = "Folio inexistente";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
-                    upModal.Update();
-                    //Response.Redirect("www.halowaypoint.com/es-es"); 
-                    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert('Registro np Valido / Invalid registration ')</script>");
-                    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close(); return false;</script>");
-
+                    Response.Redirect("Empty.aspx?paction=2");  
 
                 }
 
@@ -110,11 +105,8 @@ namespace CuestionarioWebApp
                 }
                 else
                 {
-                    lblModalTitle.Text = "Gracias por su visita";
-                    lblModalBody.Text = "Folio ya enviado";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
-                    upModal.Update();
-                    valida = true;
+                    Response.Redirect("Empty.aspx?paction=1");  
+                  
 
                 }
 
@@ -182,18 +174,10 @@ namespace CuestionarioWebApp
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>alert(\"Enviado / Send\")</script>");
-            //    //ClientScript.RegisterStartupScript(this.GetType(), "SHOW_MESSAGE", "<script type='text/javascript'>window.close();</script>");
-
             string body;
             body = construyeCuerpo();
             enviaCorreo(body);
-            
-            lblModalTitle.Text = "Gracias por su visita";
-            lblModalBody.Text = "Sus respuestas fueron enviadas";
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
-            upModal.Update();
-            terminaSesion();
+            Response.Redirect("Empty.aspx?paction=3");  
             
         }
 

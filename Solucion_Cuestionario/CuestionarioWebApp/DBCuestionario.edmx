@@ -170,6 +170,7 @@
           <Property Name="Puerto SMTP" Type="bigint" Nullable="false" />
           <Property Name="Texto Superior" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Texto Superior Ingles" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Pagina Reinicio" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="S_Corporativos">
           <Key>
@@ -753,6 +754,7 @@
           <Property Name="Texto_Superior_Ingles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="C_Tipos_Cuestionario" Relationship="Self.FK_S_Configuracion_Cuestionario_C_Tipos_Cuestionario" FromRole="S_Configuracion_Cuestionario" ToRole="C_Tipos_Cuestionario" />
           <NavigationProperty Name="S_Hoteles" Relationship="Self.FK_S_Configuracion_Cuestionario_S_Hoteles" FromRole="S_Configuracion_Cuestionario" ToRole="S_Hoteles" />
+          <Property Name="Pagina_Reinicio" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="S_Corporativos">
           <Key>
@@ -1301,6 +1303,7 @@
           <EntitySetMapping Name="S_Configuracion_Cuestionario">
             <EntityTypeMapping TypeName="CuestionarioModelContext.S_Configuracion_Cuestionario">
               <MappingFragment StoreEntitySet="S_Configuracion Cuestionario">
+                <ScalarProperty Name="Pagina_Reinicio" ColumnName="Pagina Reinicio" />
                 <ScalarProperty Name="Corporativo" ColumnName="Corporativo" />
                 <ScalarProperty Name="Hotel" ColumnName="Hotel" />
                 <ScalarProperty Name="Tipo_Cuestionario" ColumnName="Tipo Cuestionario" />

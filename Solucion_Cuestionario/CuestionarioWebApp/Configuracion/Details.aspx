@@ -104,6 +104,14 @@
                                 <asp:DynamicControl runat="server" DataField="Texto_Superior_Ingles" ID="Texto_Superior_Ingles" Mode="ReadOnly" />
                             </div>
                         </div>
+                         <div class="row">
+                            <div class="col-sm-2 text-left">
+                                <strong>Página Reinicio</strong>
+                            </div>
+                            <div class="col-sm-4">
+                                <asp:DynamicControl runat="server" DataField="Pagina_Reinicio" ID="Pagina_Reinicio" Mode="ReadOnly" />
+                            </div>
+                        </div>
                         <div class="row">
                             &nbsp;
                         </div>

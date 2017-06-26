@@ -11,7 +11,6 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class C_Preguntas_Cuestionario
     {
@@ -24,9 +23,8 @@ namespace CuestionarioWebApp
         public string Hotel { get; set; }
         public string Tipo_Cuestionario { get; set; }
         public int No_Pregunta { get; set; }
-        public string  Tipo_Pregunta   { get; set; }
+        public string Tipo_Pregunta { get; set; }
         public string Pregunta { get; set; }
-        [Required] 
         public string Pregunta_Ingles { get; set; }
         public int Calificacion_Maxima { get; set; }
     
@@ -34,7 +32,5 @@ namespace CuestionarioWebApp
         public virtual C_Tipos_Pregunta_Cuestionario C_Tipos_Pregunta_Cuestionario { get; set; }
         public virtual S_Hoteles S_Hoteles { get; set; }
         public virtual ICollection<C_Respuestas_Cuestionario> C_Respuestas_Cuestionario { get; set; }
-
-        
     }
 }

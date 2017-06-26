@@ -156,6 +156,7 @@
     <Content Include="DynamicData\FieldTemplates\Text_Edit.ascx" />
     <Content Include="DynamicData\FieldTemplates\Url.ascx" />
     <Content Include="DynamicData\FieldTemplates\Url_Edit.ascx" />
+    <Content Include="Empty.aspx" />
     <Content Include="Encuesta.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home.aspx" />
@@ -479,6 +480,13 @@
     <Compile Include="DynamicData\FieldTemplates\Url_Edit.ascx.designer.cs">
       <DependentUpon>Url_Edit.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Empty.aspx.cs">
+      <DependentUpon>Empty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Empty.aspx.designer.cs">
+      <DependentUpon>Empty.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Encuesta.aspx.cs">
       <DependentUpon>Encuesta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -486,6 +494,7 @@
     <Compile Include="Encuesta.aspx.designer.cs">
       <DependentUpon>Encuesta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

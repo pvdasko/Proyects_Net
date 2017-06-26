@@ -11,8 +11,6 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    
     
     public partial class C_Respuestas_Cuestionario
     {
@@ -27,7 +25,6 @@ namespace CuestionarioWebApp
         public int No_Pregunta { get; set; }
         public int No_Respuesta { get; set; }
         public string Respuesta { get; set; }
-        [Required] 
         public string Respuesta_Ingles { get; set; }
         public bool Respuesta_Abierta { get; set; }
     

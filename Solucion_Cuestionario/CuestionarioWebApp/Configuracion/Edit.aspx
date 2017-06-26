@@ -119,6 +119,14 @@
                                 <asp:DynamicControl runat="server" DataField="Texto_Superior_Ingles" ID="Texto_Superior_Ingles" Mode="Edit" CssClass="texto400" />
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-2 text-left">
+                                <strong>Página Reinicio</strong>
+                            </div>
+                            <div class="col-sm-4">
+                                <asp:DynamicControl runat="server" DataField="Pagina_Reinicio" ID="Pagina_Reinicio" Mode="Edit" CssClass="texto250" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-primary" />

@@ -126,7 +126,7 @@
                 visibility: hidden;
             }
 
-            row.visible-sep {
+            div.visible-sep {
                 display: none;
             }
 
@@ -191,6 +191,10 @@
 
         .text-encabezado {
             color: #a94442;
+        }
+        .panel-footer
+        {
+             width: 100%;
         }
     </style>
 </head>
@@ -260,10 +264,6 @@
         </div>
         <footer>
             <label id="lblMensajes" />
-            <div class="panel-footer">
-                <p>&copy; <%: DateTime.Now.Year %> - BlueKey</p>
-            </div>
-
             <!-- Bootstrap Modal Dialog -->
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -286,8 +286,10 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-
         </footer>
+          <div class="panel-footer">
+                <p>&copy; <%: DateTime.Now.Year %> - BlueKey</p>
+            </div>
     </form>
 </body>
 </html>
