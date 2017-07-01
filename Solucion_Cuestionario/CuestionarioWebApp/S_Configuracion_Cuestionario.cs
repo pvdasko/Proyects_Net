@@ -11,19 +11,30 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class S_Configuracion_Cuestionario
     {
         public long Corporativo { get; set; }
         public string Hotel { get; set; }
         public string Tipo_Cuestionario { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email_Saliente { get; set; }
+          [Required]
         public string Servidor_SMTP { get; set; }
+          [Required]
         public string Usuario_SMTP { get; set; }
+          [Required]
         public string Contrasena_SMTP { get; set; }
+          [Required]
         public long Puerto_SMTP { get; set; }
+          [Required]
         public string Texto_Superior { get; set; }
+          [Required]
         public string Texto_Superior_Ingles { get; set; }
+          [Required]
         public string Pagina_Reinicio { get; set; }
     
         public virtual C_Tipos_Cuestionario C_Tipos_Cuestionario { get; set; }

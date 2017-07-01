@@ -44,25 +44,73 @@
                                 <strong>Corporativo</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Corporativo" ID="Corporativo" Mode="ReadOnly" />
+                                <asp:DropDownList ID="ddlCorporativo"
+                                    DataSourceID="sdsCorporativo"
+                                    DataTextField="Nombre_Corporativo"
+                                    DataValueField="Corporativo"
+                                    SelectedValue='<%# Bind("Corporativo") %>'
+                                    runat="server"
+                                    Mode="ReadOnly"
+                                    Width="300px"
+                                    AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="sdsCorporativo" runat="server" ConnectionString="<%$ ConnectionStrings:CuestionarioConnectionString %>" SelectCommand="SELECT [Corporativo], [Nombre Corporativo] AS Nombre_Corporativo FROM [S_Corporativos]"></asp:SqlDataSource>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Hotel</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Hotel" ID="Hotel" Mode="ReadOnly" />
+                                <asp:DropDownList ID="ddlHotel"
+                                    DataSourceID="sdsHotel"
+                                    DataTextField="Nombre_Hotel"
+                                    DataValueField="Hotel"
+                                    SelectedValue='<%# Bind("Hotel") %>'
+                                    runat="server"
+                                    Mode="ReadOnly"
+                                    Width="300px"
+                                    AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="sdsHotel" runat="server" ConnectionString="<%$ ConnectionStrings:CuestionarioConnectionString %>" SelectCommand="SELECT [Hotel], [Nombre Hotel] AS Nombre_Hotel FROM [S_Hoteles] WHERE ([Corporativo] = @Corporativo)">
+                                    <SelectParameters>
+                                        <asp:ControlParameter Name="Corporativo"
+                                            ControlID="ddlCorporativo"
+                                            PropertyName="SelectedValue" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Tipo Cuestionario</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Tipo_Cuestionario" ID="Tipo_Cuestionario" Mode="ReadOnly" />
+                                <asp:DropDownList ID="ddlTipoCuestionario"
+                                    DataSourceID="sdsTipoCuestionario"
+                                    DataTextField="Descripcion"
+                                    DataValueField="Tipo_Cuestionario"
+                                    SelectedValue='<%# Bind("Tipo_Cuestionario") %>'
+                                    runat="server"
+                                    Mode="ReadOnly"
+                                    Width="300px"
+                                    AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="sdsTipoCuestionario" runat="server" ConnectionString="<%$ ConnectionStrings:CuestionarioConnectionString %>" SelectCommand="SELECT [Tipo Cuestionario] AS Tipo_Cuestionario, [Descripcion] FROM [C_Tipos Cuestionario] WHERE (([Corporativo] = @Corporativo) AND ([Hotel] = @Hotel))">
+                                    <SelectParameters>
+                                        <asp:ControlParameter Name="Corporativo"
+                                            ControlID="ddlCorporativo"
+                                            PropertyName="SelectedValue" />
+                                        <asp:ControlParameter Name="Hotel"
+                                            ControlID="ddlHotel"
+                                            PropertyName="SelectedValue" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>No Pregunta</strong>
@@ -71,22 +119,44 @@
                                 <asp:DynamicControl runat="server" DataField="No_Pregunta" ID="No_Pregunta" Mode="ReadOnly" />
                             </div>
                         </div>
-                        <div class="row">
+                        <br />
+                       <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Tipo Pregunta</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Tipo_Pregunta" ID="Tipo_Pregunta" Mode="Edit" />
-                            </div>
+                                <asp:DropDownList ID="ddlTipoPregunta"
+                                    DataSourceID="sdsTipoPregunta"
+                                    DataTextField="Descripcion"
+                                    DataValueField="Tipo_Pregunta"
+                                    SelectedValue='<%# Bind("Tipo_Pregunta") %>'
+                                    runat="server"
+                                    Mode="Edit"
+                                    Width="300px"
+                                    AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="sdsTipoPregunta" runat="server" ConnectionString="<%$ ConnectionStrings:CuestionarioConnectionString %>" SelectCommand="SELECT [Tipo Pregunta] AS Tipo_Pregunta, [Descripcion] FROM [C_Tipos Pregunta Cuestionario] WHERE (([Corporativo] = @Corporativo) AND ([Hotel] = @Hotel))">
+                                    <SelectParameters>
+                                        <asp:ControlParameter Name="Corporativo"
+                                            ControlID="ddlCorporativo"
+                                            PropertyName="SelectedValue" />
+                                        <asp:ControlParameter Name="Hotel"
+                                            ControlID="ddlHotel"
+                                            PropertyName="SelectedValue" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </div>                           
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Pregunta</strong>
                             </div>
                             <div class="col-sm-4">
-                                <asp:DynamicControl runat="server" DataField="Pregunta" ID="Pregunta" Mode="Edit"  CssClass="texto400"/>
+                                <asp:DynamicControl runat="server" DataField="Pregunta" ID="Pregunta" Mode="Edit" CssClass="texto400" />
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Pregunta Ingles</strong>
@@ -95,6 +165,7 @@
                                 <asp:DynamicControl runat="server" DataField="Pregunta_Ingles" ID="Pregunta_Ingles" Mode="Edit" CssClass="texto400" />
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-2 text-left">
                                 <strong>Calificacion Maxima</strong>
@@ -103,6 +174,7 @@
                                 <asp:DynamicControl runat="server" DataField="Calificacion_Maxima" ID="Calificacion_Maxima" Mode="Edit" />
                             </div>
                         </div>
+                        <br />
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-primary" />

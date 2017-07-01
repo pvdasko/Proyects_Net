@@ -36,7 +36,7 @@ namespace CuestionarioWebApp.Configuracion
                     _db.SaveChanges();
                 }
             }
-            Response.Redirect("../Configuracion/Default.aspxx");
+            Response.Redirect("../Configuracion/Default.aspx");
         }
 
 

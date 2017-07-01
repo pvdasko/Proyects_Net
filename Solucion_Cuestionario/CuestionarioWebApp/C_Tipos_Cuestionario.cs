@@ -11,6 +11,8 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class C_Tipos_Cuestionario
     {
@@ -22,8 +24,11 @@ namespace CuestionarioWebApp
     
         public long Corporativo { get; set; }
         public string Hotel { get; set; }
+        [StringLength(10)]
         public string Tipo_Cuestionario { get; set; }
+        [Required]
         public string Descripcion { get; set; }
+        [Required]
         public string Descripcion_Ingles { get; set; }
     
         public virtual ICollection<C_Preguntas_Cuestionario> C_Preguntas_Cuestionario { get; set; }

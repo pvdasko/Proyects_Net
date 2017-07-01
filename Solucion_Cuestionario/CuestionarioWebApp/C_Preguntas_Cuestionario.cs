@@ -11,6 +11,8 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class C_Preguntas_Cuestionario
     {
@@ -24,7 +26,9 @@ namespace CuestionarioWebApp
         public string Tipo_Cuestionario { get; set; }
         public int No_Pregunta { get; set; }
         public string Tipo_Pregunta { get; set; }
+        [Required]
         public string Pregunta { get; set; }
+        [Required]
         public string Pregunta_Ingles { get; set; }
         public int Calificacion_Maxima { get; set; }
     

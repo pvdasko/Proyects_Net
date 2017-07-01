@@ -11,13 +11,18 @@ namespace CuestionarioWebApp
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class S_Correos_Cuestionario
     {
         public long Corporativo { get; set; }
         public string Hotel { get; set; }
         public string Tipo_Cuestionario { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public string Descripcion { get; set; }
     
         public virtual C_Tipos_Cuestionario C_Tipos_Cuestionario { get; set; }

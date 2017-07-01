@@ -487,7 +487,19 @@ namespace CuestionarioWebApp
                     context.O_Respuestas_Cuestionario_Huespedes.Remove(respDel);
                     context.SaveChanges();
                 }
-                else if (tp != "Opcio" && respuesta.Count > 0)
+                else if ((tp == "Calif" || tp == "Abier") && respuesta.Count > 0)
+                {
+                    O_Respuestas_Cuestionario_Huespedes respDel = context.O_Respuestas_Cuestionario_Huespedes.First(a =>
+                                          a.Corporativo == pcorpo
+                                          && a.Hotel == photel
+                                          && a.Tipo_Cuestionario == ptipo
+                                          && a.No_Pregunta == np
+                                          && a.Id == pfolio
+                                          && a.No_Respuesta == nr);
+                    context.O_Respuestas_Cuestionario_Huespedes.Remove(respDel);
+                    context.SaveChanges();
+                }
+                else if (tp == "Selec" && respuesta.Count > 0)
                 {
                     O_Respuestas_Cuestionario_Huespedes respDel = context.O_Respuestas_Cuestionario_Huespedes.First(a =>
                                           a.Corporativo == pcorpo
@@ -512,11 +524,7 @@ namespace CuestionarioWebApp
                 resp.Texto = valor == "on" ? "" : valor;
                 context.O_Respuestas_Cuestionario_Huespedes.Add(resp);
                 context.SaveChanges();
-
-
-
-
-
+                                
             }
         }
 
